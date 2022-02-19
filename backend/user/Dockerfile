@@ -1,6 +1,8 @@
 FROM golang:1.17.6-alpine
 
-RUN apk update
+RUN apk update && \
+    apk upgrade && \
+    apk add git
 
 WORKDIR /app
 
