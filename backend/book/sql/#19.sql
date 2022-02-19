@@ -5,6 +5,7 @@ USE share_report;
 CREATE TABLE IF NOT EXISTS book (
   id INT NOT NULL AUTO_INCREMENT,
   isbn INT NOT NULL,
+  valid BOOLEAN NOT NULL DEFAULT 1,
   created_at DATETIME NOT NULL DEFAULT current_timestamp,
   updated_at DATETIME NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp,
 
