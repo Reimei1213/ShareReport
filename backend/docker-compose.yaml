@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+  user-db:
+    image: mysql:8.0
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: ${USER_DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "${USER_DB_PORT}:3306"
+    volumes:
+      - "./user/mysql-data/:/docker-entrypoint-initdb.d/"
+  user-api:
+    build:
+      context: ./
+      dockerfile: user/Dockerfile
+    image: share-report/user
+    container_name: user
+    ports:
+      - "${USER_API_PORT}:${USER_API_PORT}"
+    env_file:
+      - .env
+    depends_on:
+      - user-db
+
+  report-db:
+    image: mysql:8.0
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: ${REPORT_DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "${REPORT_DB_PORT}:3306"
+    volumes:
+      - "./report/mysql-data/:/docker-entrypoint-initdb.d/"
+  report-api:
+    build:
+      context: ./
+      dockerfile: report/Dockerfile
+    image: share-report/report
+    container_name: report
+    ports:
+      - "${REPORT_API_PORT}:${REPORT_API_PORT}"
+    env_file:
+      - .env
+    depends_on:
+      - report-db
+
+  book-db:
+    image: mysql:8.0
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: ${BOOK_DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "${BOOK_DB_PORT}:3306"
+    volumes:
+      - "./book/mysql-data/:/docker-entrypoint-initdb.d/"
+  book-api:
+    build:
+      context: ./
+      dockerfile: book/Dockerfile
+    image: share-report/book
+    container_name: book
+    ports:
+      - "${BOOK_API_PORT}:${BOOK_API_PORT}"
+    env_file:
+      - .env
+    depends_on:
+      - book-db
