@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS book (
   created_at DATETIME NOT NULL DEFAULT current_timestamp,
   updated_at DATETIME NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp,
 
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
   INDEX isbn_index(isbn)
 );
