@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS report (
   group_user_id INT NOT NULL,
   content TEXT NOT NULL,
   star INT NOT NULL CHECK(1 <= star AND star <= 5),
+  valid BOOLEAN NOT NULL DEFAULT 1,
   created_at DATETIME NOT NULL DEFAULT current_timestamp,
   updated_at DATETIME NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp,
 
@@ -19,6 +20,7 @@ CREATE TABLE IF NOT EXISTS report (
 CREATE TABLE IF NOT EXISTS tag (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(100) NOT NULL,
+  valid BOOLEAN NOT NULL DEFAULT 1,
   created_at DATETIME NOT NULL DEFAULT current_timestamp,
   updated_at DATETIME NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp,
 
@@ -29,6 +31,7 @@ CREATE TABLE IF NOT EXISTS report_tag (
   id INT NOT NULL AUTO_INCREMENT,
   report_id INT NOT NULL,
   tag_id INT NOT NULL,
+  valid BOOLEAN NOT NULL DEFAULT 1,
   created_at DATETIME NOT NULL DEFAULT current_timestamp,
   updated_at DATETIME NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp,
 
