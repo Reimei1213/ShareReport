@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	"os"
+	"strconv"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -15,7 +16,8 @@ import (
 )
 
 func main() {
-	listenPort, err := net.Listen("tcp", fmt.Sprintf(":%d", os.Getenv("USER_API_PORT")))
+	port, _ := strconv.Atoi(os.Getenv("USER_API_PORT"))
+	listenPort, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
