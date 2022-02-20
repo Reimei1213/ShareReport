@@ -11,7 +11,7 @@ services:
     ports:
       - "${USER_DB_PORT}:3306"
     volumes:
-      - "./user/mysql-data/:/docker-entrypoint-initdb.d/"
+      - "./user/db/mysql-data/:/docker-entrypoint-initdb.d/"
   user-api:
     build:
       context: ./
