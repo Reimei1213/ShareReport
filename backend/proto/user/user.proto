@@ -1,0 +1,159 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "proto/user/";
+
+import "google/protobuf/timestamp.proto";
+
+service UserService {
+  // User
+  rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUserById (DeleteUserByIdRequest) returns (DeleteUserByIdResponse);
+
+  // GroupUser
+  rpc GetGroupUserByUserIdAndGroupId (GetGroupUserByUserIdAndGroupIdRequest) returns (GetGroupUserByUserIdAndGroupIdResponse);
+  rpc CreateGroupUser (CreateGroupUserRequest) returns (CreateGroupUserResponse);
+  rpc DeleteGroupUserByUserId (DeleteGroupUserByUserIdRequest) returns (DeleteGroupUserByUserIdResponse);
+  rpc DeleteGroupUserByGroupId (DeleteGroupUserByGroupIdRequest) returns (DeleteGroupUserByGroupIdResponse);
+
+  // Group
+  rpc GetGroupById (GetGroupByIdRequest) returns (GetGroupByIdResponse);
+  rpc CreateGroup (CreateGroupRequest) returns (CreateGroupResponse);
+  rpc UpdateGroup (UpdateGroupRequest) returns (UpdateGroupResponse);
+  rpc DeleteGroupById (DeleteGroupByIdRequest) returns (DeleteGroupByIdResponse);
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string password = 4;
+  bool valid = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message GroupUser {
+  int32 id = 1;
+  string user_id = 2;
+  int32 group_id = 3;
+  bool valid = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message Group {
+  int32 id = 1;
+  string name = 2;
+  bool valid = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+// User
+message GetUserByIdRequest {
+  string id = 1;
+}
+
+message GetUserByIdResponse {
+  User user = 1;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message CreateUserResponse {
+  User user = 1;
+}
+
+message UpdateUserRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message UpdateUserResponse {
+  User user = 1;
+}
+
+message DeleteUserByIdRequest {
+  string id = 1;
+}
+
+message DeleteUserByIdResponse {
+  User user = 1;
+}
+
+// GroupUser
+message GetGroupUserByUserIdAndGroupIdRequest {
+  string user_id = 1;
+  int32 group_id = 2;
+}
+
+message GetGroupUserByUserIdAndGroupIdResponse {
+  GroupUser group_user = 1;
+}
+
+message CreateGroupUserRequest {
+  string user_id = 1;
+  int32 group_id = 2;
+}
+
+message CreateGroupUserResponse {
+  GroupUser group_user = 1;
+}
+
+message DeleteGroupUserByUserIdRequest {
+  string user_id = 1;
+}
+
+message DeleteGroupUserByUserIdResponse {
+  GroupUser group_user = 1;
+}
+
+message DeleteGroupUserByGroupIdRequest {
+  int32 group_id = 1;
+}
+
+message DeleteGroupUserByGroupIdResponse {
+  GroupUser group_user = 1;
+}
+
+// Group
+message GetGroupByIdRequest {
+  int32 id = 1;
+}
+
+message GetGroupByIdResponse {
+  Group group = 1;
+}
+
+message CreateGroupRequest {
+  string name = 1;
+}
+
+message CreateGroupResponse {
+  Group group = 1;
+}
+
+message UpdateGroupRequest {
+  string name = 1;
+}
+
+message UpdateGroupResponse {
+  Group group = 1;
+}
+
+message DeleteGroupByIdRequest {
+  int32 id = 1;
+}
+
+message DeleteGroupByIdResponse {
+  Group group = 1;
+}
