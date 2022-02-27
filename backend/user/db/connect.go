@@ -12,8 +12,8 @@ import (
 func Connect() (*sqlx.DB, error) {
 	u := os.Getenv("USER_DB_USER")
 	pw := os.Getenv("USER_DB_PASSWORD")
-	h := os.Getenv("USER_DB_HOST")
-	p := os.Getenv("USER_DB_PORT")
+	h := os.Getenv("USER_DB_CONTAINER_NAME")
+	p := "3306"
 	dn := os.Getenv("DB_NAME")
 	dbms := os.Getenv("USER_DB_DBMS")
 
