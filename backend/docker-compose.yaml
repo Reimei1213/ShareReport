@@ -8,14 +8,18 @@ services:
       MYSQL_ROOT_PASSWORD: ${USER_DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
       TZ: 'Asia/Tokyo'
+    container_name: ${USER_DB_CONTAINER_NAME}
     ports:
       - "${USER_DB_PORT}:3306"
     volumes:
-      - "./user/mysql-data/:/docker-entrypoint-initdb.d/"
+      - "./user/db/mysql-data/:/docker-entrypoint-initdb.d/"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u ${USER_DB_USER} -p${USER_DB_PASSWORD}
   user-api:
     build:
       context: ./
       dockerfile: user/Dockerfile
+    command: reflex -r '\.go$$' -s -- sh -c 'go run user/main.go'
     image: share-report/user
     container_name: user
     ports:
@@ -23,7 +27,8 @@ services:
     env_file:
       - .env
     depends_on:
-      - user-db
+      user-db:
+        condition: service_healthy
 
   report-db:
     image: mysql:8.0
