@@ -1,4 +1,4 @@
-package user
+package main
 
 import (
 	"fmt"
@@ -11,8 +11,8 @@ import (
 	"google.golang.org/grpc/reflection"
 
 	pb "share-report/proto/user"
-	"share-report/user/usecase"
 	"share-report/user/db"
+	"share-report/user/usecase"
 )
 
 func main() {
@@ -28,6 +28,8 @@ func main() {
 		panic(err)
 	}
 
+
+	fmt.Println("Server has started")
 	server := grpc.NewServer()
 	pb.RegisterUserServiceServer(server, usecase.NewUserService(db))
 
