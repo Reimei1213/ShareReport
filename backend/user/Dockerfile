@@ -12,5 +12,5 @@ RUN go mod download
 
 COPY . .
 
-RUN go get -u github.com/cespare/reflex 
-CMD reflex -r '(\.go$|go\.mod)' -s go run *.go
+RUN go get -u github.com/cespare/reflex
+RUN go build -o main user/main.go
