@@ -41,6 +41,8 @@ services:
       - "${REPORT_DB_PORT}:3306"
     volumes:
       - "./report/mysql-data/:/docker-entrypoint-initdb.d/"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u ${REPORT_DB_USER} -p${REPORT_DB_PASSWORD}
   report-api:
     build:
       context: ./
@@ -52,7 +54,8 @@ services:
     env_file:
       - .env
     depends_on:
-      - report-db
+      report-db:
+        condition: service_healthy
 
   book-db:
     image: mysql:8.0
@@ -65,6 +68,8 @@ services:
       - "${BOOK_DB_PORT}:3306"
     volumes:
       - "./book/mysql-data/:/docker-entrypoint-initdb.d/"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u ${BOOK_DB_USER} -p${BOOK_DB_PASSWORD}
   book-api:
     build:
       context: ./
@@ -76,4 +81,5 @@ services:
     env_file:
       - .env
     depends_on:
-      - book-db
+      book-db:
+        condition: service_healthy
