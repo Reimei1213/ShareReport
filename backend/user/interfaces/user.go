@@ -16,6 +16,17 @@ func NewUserHandler(db *sqlx.DB) UserHandler {
 	return &userHandler{db}
 }
 
+func (uh *userHandler) GetUserByID(id string) (*entity.User, error) {
+	var user entity.User
+	err := uh.db.Get(&user, `
+		SELECT * FROM user WHERE id = ?
+	`, id)
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
 func (uh *userHandler) CreateUser(u *entity.User) error {
 	uuid, err := uuid.NewRandom()
 	if err != nil {

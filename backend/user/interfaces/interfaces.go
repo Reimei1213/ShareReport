@@ -13,6 +13,7 @@ type DatabaseHandler interface {
 }
 
 type UserHandler interface {
+	GetUserByID(id string) (*entity.User, error)
 	CreateUser(u *entity.User) error
 }
 
