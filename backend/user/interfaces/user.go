@@ -16,7 +16,7 @@ func NewUserHandler(db *sqlx.DB) UserHandler {
 	return &userHandler{db}
 }
 
-func (uh *userHandler) CreateUser(u entity.User) error {
+func (uh *userHandler) CreateUser(u *entity.User) error {
 	uuid, err := uuid.NewRandom()
 	if err != nil {
 		return err

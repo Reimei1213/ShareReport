@@ -20,7 +20,7 @@ func (s *UserService) CreateUser(ctx context.Context, req *pb.CreateUserRequest)
 		Email: req.Email,
 		Password: req.Password,
 	}
-	err := s.dh.CreateUser(user)
+	err := s.dh.CreateUser(&user)
 	if err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}
