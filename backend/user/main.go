@@ -28,7 +28,6 @@ func main() {
 		panic(err)
 	}
 
-
 	fmt.Println("Server has started")
 	server := grpc.NewServer()
 	pb.RegisterUserServiceServer(server, usecase.NewUserService(db))

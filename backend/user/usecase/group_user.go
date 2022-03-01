@@ -1,6 +1,6 @@
 package usecase
 
-import(
+import (
 	"context"
 	pb "share-report/proto/user"
 )

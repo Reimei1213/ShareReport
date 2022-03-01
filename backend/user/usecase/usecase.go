@@ -1,17 +1,20 @@
 package usecase
 
 import (
-	"share-report/user/interfaces"
+	"share-report/user/adapter/gateway"
+	"share-report/user/adapter/presenter"
 
 	"github.com/jmoiron/sqlx"
 )
 
 type UserService struct {
-	dh interfaces.DatabaseHandler
+	dh  gateway.DatabaseHandler
+	oph presenter.OutputPortHandler
 }
 
 func NewUserService(db *sqlx.DB) *UserService {
 	return &UserService{
-		dh: interfaces.NewDatabaseHandler(db),
+		dh:  gateway.NewDatabaseHandler(db),
+		oph: presenter.NewOutputPortHandler(),
 	}
 }

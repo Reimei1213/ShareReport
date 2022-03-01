@@ -1,4 +1,4 @@
-package interfaces
+package gateway
 
 import (
 	"share-report/user/entity"
@@ -18,11 +18,9 @@ type UserHandler interface {
 }
 
 type GroupUserHandler interface {
-
 }
 
 type GroupHandler interface {
-
 }
 
 type databaseHandler struct {

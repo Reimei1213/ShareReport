@@ -1,4 +1,4 @@
-package interfaces
+package gateway
 
 import "github.com/jmoiron/sqlx"
 
@@ -7,5 +7,5 @@ type gropuHandler struct {
 }
 
 func NewGroupHandler(db *sqlx.DB) GroupHandler {
-	return gropuHandler{db}
+	return &gropuHandler{db}
 }
