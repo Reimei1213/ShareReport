@@ -1,4 +1,4 @@
-package interfaces
+package gateway
 
 import (
 	"share-report/user/entity"

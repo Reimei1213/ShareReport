@@ -1,4 +1,4 @@
-package interfaces
+package gateway
 
 import "github.com/jmoiron/sqlx"
 
@@ -7,5 +7,5 @@ type groupUserHandler struct {
 }
 
 func NewGroupUserHandler(db *sqlx.DB) GroupUserHandler {
-	return groupUserHandler{db}
+	return &groupUserHandler{db}
 }
