@@ -4,11 +4,10 @@ import (
 	"context"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"github.com/golang/protobuf/ptypes"
 
-	"share-report/user/entity"
-	pb "share-report/proto/user"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	pb "share-report/proto/user"
+	"share-report/user/entity"
 )
 
 func (s *UserService) GetUserById(ctx context.Context, req *pb.GetUserByIdRequest) (*pb.GetUserByIdResponse, error) {
@@ -16,32 +15,16 @@ func (s *UserService) GetUserById(ctx context.Context, req *pb.GetUserByIdReques
 	if err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}
-	createdAt, err := ptypes.TimestampProto(user.CreatedAt)
-	if err != nil {
-		return nil, status.Error(codes.InvalidArgument, err.Error())
-	}
-	updatedAt, err := ptypes.TimestampProto(user.UpdatedAt)
-	if err != nil {
-		return nil, status.Error(codes.InvalidArgument, err.Error())
-	}
 
 	return &pb.GetUserByIdResponse{
-		User: &pb.User{
-			Id: user.ID,
-			Name: user.Name,
-			Email: user.Email,
-			Password: user.Password,
-			Valid: user.Valid,
-			CreatedAt: createdAt,
-			UpdatedAt: updatedAt,
-		},
+		User: s.oph.User(user),
 	}, nil
 }
 
 func (s *UserService) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*emptypb.Empty, error) {
 	user := entity.User{
-		Name: req.Name,
-		Email: req.Email,
+		Name:     req.Name,
+		Email:    req.Email,
 		Password: req.Password,
 	}
 	err := s.dh.CreateUser(&user)

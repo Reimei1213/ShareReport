@@ -1,29 +1,34 @@
 package presenter
 
+import (
+	"github.com/golang/protobuf/ptypes"
+
+	pb "share-report/proto/user"
+	"share-report/user/entity"
+)
+
 type OutputPortHandler interface {
-	UserHandler
-	GroupUserHandler
-	GroupHandler
-}
-
-type UserHandler interface {
-}
-
-type GroupUserHandler interface {
-}
-
-type GroupHandler interface {
+	User(*entity.User) *pb.User
 }
 
 type outputPortHandler struct {
-	UserHandler
-	GroupUserHandler
-	GroupHandler
 }
 
 func NewOutputPortHandler() OutputPortHandler {
-	uh := NewUserHandler()
-	guh := NewGroupUserHandler()
-	gh := NewGroupHandler()
-	return &outputPortHandler{uh, guh, gh}
+	return &outputPortHandler{}
+}
+
+func (oph *outputPortHandler) User(user *entity.User) *pb.User {
+	createdAt, _ := ptypes.TimestampProto(user.CreatedAt)
+	updatedAt, _ := ptypes.TimestampProto(user.UpdatedAt)
+
+	return &pb.User{
+		Id:        user.ID,
+		Name:      user.Name,
+		Email:     user.Email,
+		Password:  user.Password,
+		Valid:     user.Valid,
+		CreatedAt: createdAt,
+		UpdatedAt: updatedAt,
+	}
 }
