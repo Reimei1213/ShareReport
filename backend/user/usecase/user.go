@@ -2,12 +2,14 @@ package usecase
 
 import (
 	"context"
+
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	pb "share-report/proto/user"
 	"share-report/user/entity"
+
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 func (s *UserService) GetUserById(ctx context.Context, req *pb.GetUserByIdRequest) (*pb.GetUserByIdResponse, error) {
@@ -21,21 +23,27 @@ func (s *UserService) GetUserById(ctx context.Context, req *pb.GetUserByIdReques
 	}, nil
 }
 
-func (s *UserService) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*emptypb.Empty, error) {
+func (s *UserService) CreateOrUpdateUser(ctx context.Context, req *pb.CreateOrUpdateUserRequest) (*emptypb.Empty, error) {
 	user := entity.User{
+		ID:       req.Id,
 		Name:     req.Name,
 		Email:    req.Email,
 		Password: req.Password,
 	}
-	err := s.dh.CreateUser(&user)
+	_, err := s.dh.GetUserByID(user.ID)
+	if err != nil && err != entity.ErrorUserNotExist {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
+
+	if err == entity.ErrorUserNotExist {
+		err = s.dh.CreateUser(&user)
+	} else {
+		err = s.dh.UpdateUser(&user)
+	}
 	if err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}
 	return &emptypb.Empty{}, nil
-}
-
-func (s *UserService) UpdateUser(ctx context.Context, req *pb.UpdateUserRequest) (*pb.UpdateUserResponse, error) {
-	return &pb.UpdateUserResponse{}, nil
 }
 
 func (s *UserService) DeleteUserById(ctx context.Context, req *pb.DeleteUserByIdRequest) (*pb.DeleteUserByIdResponse, error) {

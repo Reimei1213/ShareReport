@@ -1,6 +1,7 @@
 package gateway
 
 import (
+	"database/sql"
 	"share-report/user/entity"
 
 	"github.com/google/uuid"
@@ -21,6 +22,11 @@ func (uh *userHandler) GetUserByID(id string) (*entity.User, error) {
 	err := uh.db.Get(&user, `
 		SELECT * FROM user WHERE id = ?
 	`, id)
+
+	if err != nil && err == sql.ErrNoRows {
+		return nil, entity.ErrorUserNotExist
+	}
+
 	if err != nil {
 		return nil, err
 	}
@@ -50,6 +56,24 @@ func (uh *userHandler) CreateUser(u *entity.User) error {
 		}
 		return err
 	}
+	err = tx.Commit()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (uh *userHandler) UpdateUser(u *entity.User) error {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), 12)
+	if err != nil {
+		return err
+	}
+
+	tx := uh.db.MustBegin()
+	tx.MustExec(`
+		UPDATE user SET name = ?, email = ?, password = ?
+		WHERE id = ?
+	`, u.Name, u.Email, string(hashedPassword), u.ID)
 	err = tx.Commit()
 	if err != nil {
 		return err
