@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "proto/user/";
+option go_package = "proto/user/;user";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
@@ -11,7 +11,7 @@ service UserService {
   // User
   rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
   rpc CreateOrUpdateUser (CreateOrUpdateUserRequest) returns (google.protobuf.Empty);
-  rpc DeleteUserById (DeleteUserByIdRequest) returns (DeleteUserByIdResponse);
+  rpc DeleteUserById (DeleteUserByIdRequest) returns (google.protobuf.Empty);
 
   // GroupUser
   rpc GetGroupUserByUserIdAndGroupId (GetGroupUserByUserIdAndGroupIdRequest) returns (GetGroupUserByUserIdAndGroupIdResponse);
@@ -71,10 +71,6 @@ message CreateOrUpdateUserRequest {
 
 message DeleteUserByIdRequest {
   string id = 1;
-}
-
-message DeleteUserByIdResponse {
-  User user = 1;
 }
 
 // GroupUser

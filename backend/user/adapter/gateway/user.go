@@ -80,3 +80,16 @@ func (uh *userHandler) UpdateUser(u *entity.User) error {
 	}
 	return nil
 }
+
+func (uh *userHandler) DeleteUserById(id string) error {
+	tx := uh.db.MustBegin()
+	tx.MustExec(`
+		UPDATE user SET valid = ?
+		WHERE id = ?
+	`, 0, id)
+	err := tx.Commit()
+	if err != nil {
+		return err
+	}
+	return nil
+}
