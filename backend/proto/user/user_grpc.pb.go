@@ -22,7 +22,7 @@ type UserServiceClient interface {
 	// User
 	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
 	CreateOrUpdateUser(ctx context.Context, in *CreateOrUpdateUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	DeleteUserById(ctx context.Context, in *DeleteUserByIdRequest, opts ...grpc.CallOption) (*DeleteUserByIdResponse, error)
+	DeleteUserById(ctx context.Context, in *DeleteUserByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// GroupUser
 	GetGroupUserByUserIdAndGroupId(ctx context.Context, in *GetGroupUserByUserIdAndGroupIdRequest, opts ...grpc.CallOption) (*GetGroupUserByUserIdAndGroupIdResponse, error)
 	CreateGroupUser(ctx context.Context, in *CreateGroupUserRequest, opts ...grpc.CallOption) (*CreateGroupUserResponse, error)
@@ -61,8 +61,8 @@ func (c *userServiceClient) CreateOrUpdateUser(ctx context.Context, in *CreateOr
 	return out, nil
 }
 
-func (c *userServiceClient) DeleteUserById(ctx context.Context, in *DeleteUserByIdRequest, opts ...grpc.CallOption) (*DeleteUserByIdResponse, error) {
-	out := new(DeleteUserByIdResponse)
+func (c *userServiceClient) DeleteUserById(ctx context.Context, in *DeleteUserByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/user.UserService/DeleteUserById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -149,7 +149,7 @@ type UserServiceServer interface {
 	// User
 	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
 	CreateOrUpdateUser(context.Context, *CreateOrUpdateUserRequest) (*emptypb.Empty, error)
-	DeleteUserById(context.Context, *DeleteUserByIdRequest) (*DeleteUserByIdResponse, error)
+	DeleteUserById(context.Context, *DeleteUserByIdRequest) (*emptypb.Empty, error)
 	// GroupUser
 	GetGroupUserByUserIdAndGroupId(context.Context, *GetGroupUserByUserIdAndGroupIdRequest) (*GetGroupUserByUserIdAndGroupIdResponse, error)
 	CreateGroupUser(context.Context, *CreateGroupUserRequest) (*CreateGroupUserResponse, error)
@@ -172,7 +172,7 @@ func (UnimplementedUserServiceServer) GetUserById(context.Context, *GetUserByIdR
 func (UnimplementedUserServiceServer) CreateOrUpdateUser(context.Context, *CreateOrUpdateUserRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrUpdateUser not implemented")
 }
-func (UnimplementedUserServiceServer) DeleteUserById(context.Context, *DeleteUserByIdRequest) (*DeleteUserByIdResponse, error) {
+func (UnimplementedUserServiceServer) DeleteUserById(context.Context, *DeleteUserByIdRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserById not implemented")
 }
 func (UnimplementedUserServiceServer) GetGroupUserByUserIdAndGroupId(context.Context, *GetGroupUserByUserIdAndGroupIdRequest) (*GetGroupUserByUserIdAndGroupIdResponse, error) {
@@ -462,5 +462,5 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/user/user.proto",
+	Metadata: "user.proto",
 }
