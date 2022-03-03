@@ -13,17 +13,17 @@ service UserService {
   rpc CreateOrUpdateUser (CreateOrUpdateUserRequest) returns (google.protobuf.Empty);
   rpc DeleteUserById (DeleteUserByIdRequest) returns (google.protobuf.Empty);
 
-  // GroupUser
-  rpc GetGroupUserByUserIdAndGroupId (GetGroupUserByUserIdAndGroupIdRequest) returns (GetGroupUserByUserIdAndGroupIdResponse);
-  rpc CreateGroupUser (CreateGroupUserRequest) returns (CreateGroupUserResponse);
-  rpc DeleteGroupUserByUserId (DeleteGroupUserByUserIdRequest) returns (DeleteGroupUserByUserIdResponse);
-  rpc DeleteGroupUserByGroupId (DeleteGroupUserByGroupIdRequest) returns (DeleteGroupUserByGroupIdResponse);
+  // OrganizationUser
+  rpc GetOrganizationUserByUserIdAndOrganizationId (GetOrganizationUserByUserIdAndOrganizationIdRequest) returns (GetOrganizationUserByUserIdAndOrganizationIdResponse);
+  rpc CreateOrganizationUser (CreateOrganizationUserRequest) returns (CreateOrganizationUserResponse);
+  rpc DeleteOrganizationUserByUserId (DeleteOrganizationUserByUserIdRequest) returns (DeleteOrganizationUserByUserIdResponse);
+  rpc DeleteOrganizationUserByOrganizationId (DeleteOrganizationUserByOrganizationIdRequest) returns (DeleteOrganizationUserByOrganizationIdResponse);
 
-  // Group
-  rpc GetGroupById (GetGroupByIdRequest) returns (GetGroupByIdResponse);
-  rpc CreateGroup (CreateGroupRequest) returns (CreateGroupResponse);
-  rpc UpdateGroup (UpdateGroupRequest) returns (UpdateGroupResponse);
-  rpc DeleteGroupById (DeleteGroupByIdRequest) returns (DeleteGroupByIdResponse);
+  // Organization
+  rpc GetOrganizationById (GetOrganizationByIdRequest) returns (GetOrganizationByIdResponse);
+  rpc CreateOrganization (CreateOrganizationRequest) returns (CreateOrganizationResponse);
+  rpc UpdateOrganization (UpdateOrganizationRequest) returns (UpdateOrganizationResponse);
+  rpc DeleteOrganizationById (DeleteOrganizationByIdRequest) returns (DeleteOrganizationByIdResponse);
 }
 
 message User {
@@ -36,7 +36,7 @@ message User {
   google.protobuf.Timestamp updated_at = 7;
 }
 
-message GroupUser {
+message OrganizationUser {
   int32 id = 1;
   string user_id = 2;
   int32 group_id = 3;
@@ -45,12 +45,13 @@ message GroupUser {
   google.protobuf.Timestamp updated_at = 6;
 }
 
-message Group {
+message Organization {
   int32 id = 1;
-  string name = 2;
-  bool valid = 3;
-  google.protobuf.Timestamp created_at = 4;
-  google.protobuf.Timestamp updated_at = 5;
+  string user_id = 2;
+  string name = 3;
+  bool valid = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
 }
 
 // User
@@ -73,70 +74,70 @@ message DeleteUserByIdRequest {
   string id = 1;
 }
 
-// GroupUser
-message GetGroupUserByUserIdAndGroupIdRequest {
+// Organization
+message GetOrganizationUserByUserIdAndOrganizationIdRequest {
   string user_id = 1;
-  int32 group_id = 2;
+  int32 organization_id = 2;
 }
 
-message GetGroupUserByUserIdAndGroupIdResponse {
-  GroupUser group_user = 1;
+message GetOrganizationUserByUserIdAndOrganizationIdResponse {
+  OrganizationUser organization_user = 1;
 }
 
-message CreateGroupUserRequest {
+message CreateOrganizationUserRequest {
   string user_id = 1;
-  int32 group_id = 2;
+  int32 organization_id = 2;
 }
 
-message CreateGroupUserResponse {
-  GroupUser group_user = 1;
+message CreateOrganizationUserResponse {
+  OrganizationUser organization_user = 1;
 }
 
-message DeleteGroupUserByUserIdRequest {
+message DeleteOrganizationUserByUserIdRequest {
   string user_id = 1;
 }
 
-message DeleteGroupUserByUserIdResponse {
-  GroupUser group_user = 1;
+message DeleteOrganizationUserByUserIdResponse {
+  OrganizationUser organization_user = 1;
 }
 
-message DeleteGroupUserByGroupIdRequest {
-  int32 group_id = 1;
+message DeleteOrganizationUserByOrganizationIdRequest {
+  int32 organization_id = 1;
 }
 
-message DeleteGroupUserByGroupIdResponse {
-  GroupUser group_user = 1;
+message DeleteOrganizationUserByOrganizationIdResponse {
+  OrganizationUser organization_user = 1;
 }
 
-// Group
-message GetGroupByIdRequest {
+// Organization
+message GetOrganizationByIdRequest {
   int32 id = 1;
 }
 
-message GetGroupByIdResponse {
-  Group group = 1;
+message GetOrganizationByIdResponse {
+  Organization organization = 1;
 }
 
-message CreateGroupRequest {
+message CreateOrganizationRequest {
   string name = 1;
 }
 
-message CreateGroupResponse {
-  Group group = 1;
+message CreateOrganizationResponse {
+  Organization organization = 1;
 }
 
-message UpdateGroupRequest {
+message UpdateOrganizationRequest {
   string name = 1;
 }
 
-message UpdateGroupResponse {
-  Group group = 1;
+message UpdateOrganizationResponse {
+  Organization organization = 1;
 }
 
-message DeleteGroupByIdRequest {
+message DeleteOrganizationByIdRequest {
   int32 id = 1;
 }
 
-message DeleteGroupByIdResponse {
-  Group group = 1;
+message DeleteOrganizationByIdResponse {
+  Organization organization = 1;
 }
