@@ -23,16 +23,16 @@ type UserServiceClient interface {
 	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
 	CreateOrUpdateUser(ctx context.Context, in *CreateOrUpdateUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUserById(ctx context.Context, in *DeleteUserByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// GroupUser
-	GetGroupUserByUserIdAndGroupId(ctx context.Context, in *GetGroupUserByUserIdAndGroupIdRequest, opts ...grpc.CallOption) (*GetGroupUserByUserIdAndGroupIdResponse, error)
-	CreateGroupUser(ctx context.Context, in *CreateGroupUserRequest, opts ...grpc.CallOption) (*CreateGroupUserResponse, error)
-	DeleteGroupUserByUserId(ctx context.Context, in *DeleteGroupUserByUserIdRequest, opts ...grpc.CallOption) (*DeleteGroupUserByUserIdResponse, error)
-	DeleteGroupUserByGroupId(ctx context.Context, in *DeleteGroupUserByGroupIdRequest, opts ...grpc.CallOption) (*DeleteGroupUserByGroupIdResponse, error)
-	// Group
-	GetGroupById(ctx context.Context, in *GetGroupByIdRequest, opts ...grpc.CallOption) (*GetGroupByIdResponse, error)
-	CreateGroup(ctx context.Context, in *CreateGroupRequest, opts ...grpc.CallOption) (*CreateGroupResponse, error)
-	UpdateGroup(ctx context.Context, in *UpdateGroupRequest, opts ...grpc.CallOption) (*UpdateGroupResponse, error)
-	DeleteGroupById(ctx context.Context, in *DeleteGroupByIdRequest, opts ...grpc.CallOption) (*DeleteGroupByIdResponse, error)
+	// OrganizationUser
+	GetOrganizationUserByUserIdAndOrganizationId(ctx context.Context, in *GetOrganizationUserByUserIdAndOrganizationIdRequest, opts ...grpc.CallOption) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error)
+	CreateOrganizationUser(ctx context.Context, in *CreateOrganizationUserRequest, opts ...grpc.CallOption) (*CreateOrganizationUserResponse, error)
+	DeleteOrganizationUserByUserId(ctx context.Context, in *DeleteOrganizationUserByUserIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationUserByUserIdResponse, error)
+	DeleteOrganizationUserByOrganizationId(ctx context.Context, in *DeleteOrganizationUserByOrganizationIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationUserByOrganizationIdResponse, error)
+	// Organization
+	GetOrganizationById(ctx context.Context, in *GetOrganizationByIdRequest, opts ...grpc.CallOption) (*GetOrganizationByIdResponse, error)
+	CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error)
+	UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error)
+	DeleteOrganizationById(ctx context.Context, in *DeleteOrganizationByIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationByIdResponse, error)
 }
 
 type userServiceClient struct {
@@ -70,72 +70,72 @@ func (c *userServiceClient) DeleteUserById(ctx context.Context, in *DeleteUserBy
 	return out, nil
 }
 
-func (c *userServiceClient) GetGroupUserByUserIdAndGroupId(ctx context.Context, in *GetGroupUserByUserIdAndGroupIdRequest, opts ...grpc.CallOption) (*GetGroupUserByUserIdAndGroupIdResponse, error) {
-	out := new(GetGroupUserByUserIdAndGroupIdResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/GetGroupUserByUserIdAndGroupId", in, out, opts...)
+func (c *userServiceClient) GetOrganizationUserByUserIdAndOrganizationId(ctx context.Context, in *GetOrganizationUserByUserIdAndOrganizationIdRequest, opts ...grpc.CallOption) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error) {
+	out := new(GetOrganizationUserByUserIdAndOrganizationIdResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/GetOrganizationUserByUserIdAndOrganizationId", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) CreateGroupUser(ctx context.Context, in *CreateGroupUserRequest, opts ...grpc.CallOption) (*CreateGroupUserResponse, error) {
-	out := new(CreateGroupUserResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/CreateGroupUser", in, out, opts...)
+func (c *userServiceClient) CreateOrganizationUser(ctx context.Context, in *CreateOrganizationUserRequest, opts ...grpc.CallOption) (*CreateOrganizationUserResponse, error) {
+	out := new(CreateOrganizationUserResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/CreateOrganizationUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) DeleteGroupUserByUserId(ctx context.Context, in *DeleteGroupUserByUserIdRequest, opts ...grpc.CallOption) (*DeleteGroupUserByUserIdResponse, error) {
-	out := new(DeleteGroupUserByUserIdResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/DeleteGroupUserByUserId", in, out, opts...)
+func (c *userServiceClient) DeleteOrganizationUserByUserId(ctx context.Context, in *DeleteOrganizationUserByUserIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationUserByUserIdResponse, error) {
+	out := new(DeleteOrganizationUserByUserIdResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/DeleteOrganizationUserByUserId", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) DeleteGroupUserByGroupId(ctx context.Context, in *DeleteGroupUserByGroupIdRequest, opts ...grpc.CallOption) (*DeleteGroupUserByGroupIdResponse, error) {
-	out := new(DeleteGroupUserByGroupIdResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/DeleteGroupUserByGroupId", in, out, opts...)
+func (c *userServiceClient) DeleteOrganizationUserByOrganizationId(ctx context.Context, in *DeleteOrganizationUserByOrganizationIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationUserByOrganizationIdResponse, error) {
+	out := new(DeleteOrganizationUserByOrganizationIdResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/DeleteOrganizationUserByOrganizationId", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) GetGroupById(ctx context.Context, in *GetGroupByIdRequest, opts ...grpc.CallOption) (*GetGroupByIdResponse, error) {
-	out := new(GetGroupByIdResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/GetGroupById", in, out, opts...)
+func (c *userServiceClient) GetOrganizationById(ctx context.Context, in *GetOrganizationByIdRequest, opts ...grpc.CallOption) (*GetOrganizationByIdResponse, error) {
+	out := new(GetOrganizationByIdResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/GetOrganizationById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) CreateGroup(ctx context.Context, in *CreateGroupRequest, opts ...grpc.CallOption) (*CreateGroupResponse, error) {
-	out := new(CreateGroupResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/CreateGroup", in, out, opts...)
+func (c *userServiceClient) CreateOrganization(ctx context.Context, in *CreateOrganizationRequest, opts ...grpc.CallOption) (*CreateOrganizationResponse, error) {
+	out := new(CreateOrganizationResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/CreateOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) UpdateGroup(ctx context.Context, in *UpdateGroupRequest, opts ...grpc.CallOption) (*UpdateGroupResponse, error) {
-	out := new(UpdateGroupResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/UpdateGroup", in, out, opts...)
+func (c *userServiceClient) UpdateOrganization(ctx context.Context, in *UpdateOrganizationRequest, opts ...grpc.CallOption) (*UpdateOrganizationResponse, error) {
+	out := new(UpdateOrganizationResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/UpdateOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) DeleteGroupById(ctx context.Context, in *DeleteGroupByIdRequest, opts ...grpc.CallOption) (*DeleteGroupByIdResponse, error) {
-	out := new(DeleteGroupByIdResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/DeleteGroupById", in, out, opts...)
+func (c *userServiceClient) DeleteOrganizationById(ctx context.Context, in *DeleteOrganizationByIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationByIdResponse, error) {
+	out := new(DeleteOrganizationByIdResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/DeleteOrganizationById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -150,16 +150,16 @@ type UserServiceServer interface {
 	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
 	CreateOrUpdateUser(context.Context, *CreateOrUpdateUserRequest) (*emptypb.Empty, error)
 	DeleteUserById(context.Context, *DeleteUserByIdRequest) (*emptypb.Empty, error)
-	// GroupUser
-	GetGroupUserByUserIdAndGroupId(context.Context, *GetGroupUserByUserIdAndGroupIdRequest) (*GetGroupUserByUserIdAndGroupIdResponse, error)
-	CreateGroupUser(context.Context, *CreateGroupUserRequest) (*CreateGroupUserResponse, error)
-	DeleteGroupUserByUserId(context.Context, *DeleteGroupUserByUserIdRequest) (*DeleteGroupUserByUserIdResponse, error)
-	DeleteGroupUserByGroupId(context.Context, *DeleteGroupUserByGroupIdRequest) (*DeleteGroupUserByGroupIdResponse, error)
-	// Group
-	GetGroupById(context.Context, *GetGroupByIdRequest) (*GetGroupByIdResponse, error)
-	CreateGroup(context.Context, *CreateGroupRequest) (*CreateGroupResponse, error)
-	UpdateGroup(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error)
-	DeleteGroupById(context.Context, *DeleteGroupByIdRequest) (*DeleteGroupByIdResponse, error)
+	// OrganizationUser
+	GetOrganizationUserByUserIdAndOrganizationId(context.Context, *GetOrganizationUserByUserIdAndOrganizationIdRequest) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error)
+	CreateOrganizationUser(context.Context, *CreateOrganizationUserRequest) (*CreateOrganizationUserResponse, error)
+	DeleteOrganizationUserByUserId(context.Context, *DeleteOrganizationUserByUserIdRequest) (*DeleteOrganizationUserByUserIdResponse, error)
+	DeleteOrganizationUserByOrganizationId(context.Context, *DeleteOrganizationUserByOrganizationIdRequest) (*DeleteOrganizationUserByOrganizationIdResponse, error)
+	// Organization
+	GetOrganizationById(context.Context, *GetOrganizationByIdRequest) (*GetOrganizationByIdResponse, error)
+	CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error)
+	UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error)
+	DeleteOrganizationById(context.Context, *DeleteOrganizationByIdRequest) (*DeleteOrganizationByIdResponse, error)
 }
 
 // UnimplementedUserServiceServer should be embedded to have forward compatible implementations.
@@ -175,29 +175,29 @@ func (UnimplementedUserServiceServer) CreateOrUpdateUser(context.Context, *Creat
 func (UnimplementedUserServiceServer) DeleteUserById(context.Context, *DeleteUserByIdRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserById not implemented")
 }
-func (UnimplementedUserServiceServer) GetGroupUserByUserIdAndGroupId(context.Context, *GetGroupUserByUserIdAndGroupIdRequest) (*GetGroupUserByUserIdAndGroupIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGroupUserByUserIdAndGroupId not implemented")
+func (UnimplementedUserServiceServer) GetOrganizationUserByUserIdAndOrganizationId(context.Context, *GetOrganizationUserByUserIdAndOrganizationIdRequest) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationUserByUserIdAndOrganizationId not implemented")
 }
-func (UnimplementedUserServiceServer) CreateGroupUser(context.Context, *CreateGroupUserRequest) (*CreateGroupUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateGroupUser not implemented")
+func (UnimplementedUserServiceServer) CreateOrganizationUser(context.Context, *CreateOrganizationUserRequest) (*CreateOrganizationUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationUser not implemented")
 }
-func (UnimplementedUserServiceServer) DeleteGroupUserByUserId(context.Context, *DeleteGroupUserByUserIdRequest) (*DeleteGroupUserByUserIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteGroupUserByUserId not implemented")
+func (UnimplementedUserServiceServer) DeleteOrganizationUserByUserId(context.Context, *DeleteOrganizationUserByUserIdRequest) (*DeleteOrganizationUserByUserIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationUserByUserId not implemented")
 }
-func (UnimplementedUserServiceServer) DeleteGroupUserByGroupId(context.Context, *DeleteGroupUserByGroupIdRequest) (*DeleteGroupUserByGroupIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteGroupUserByGroupId not implemented")
+func (UnimplementedUserServiceServer) DeleteOrganizationUserByOrganizationId(context.Context, *DeleteOrganizationUserByOrganizationIdRequest) (*DeleteOrganizationUserByOrganizationIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationUserByOrganizationId not implemented")
 }
-func (UnimplementedUserServiceServer) GetGroupById(context.Context, *GetGroupByIdRequest) (*GetGroupByIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGroupById not implemented")
+func (UnimplementedUserServiceServer) GetOrganizationById(context.Context, *GetOrganizationByIdRequest) (*GetOrganizationByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationById not implemented")
 }
-func (UnimplementedUserServiceServer) CreateGroup(context.Context, *CreateGroupRequest) (*CreateGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateGroup not implemented")
+func (UnimplementedUserServiceServer) CreateOrganization(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganization not implemented")
 }
-func (UnimplementedUserServiceServer) UpdateGroup(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateGroup not implemented")
+func (UnimplementedUserServiceServer) UpdateOrganization(context.Context, *UpdateOrganizationRequest) (*UpdateOrganizationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
 }
-func (UnimplementedUserServiceServer) DeleteGroupById(context.Context, *DeleteGroupByIdRequest) (*DeleteGroupByIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteGroupById not implemented")
+func (UnimplementedUserServiceServer) DeleteOrganizationById(context.Context, *DeleteOrganizationByIdRequest) (*DeleteOrganizationByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationById not implemented")
 }
 
 // UnsafeUserServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -265,146 +265,146 @@ func _UserService_DeleteUserById_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetGroupUserByUserIdAndGroupId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGroupUserByUserIdAndGroupIdRequest)
+func _UserService_GetOrganizationUserByUserIdAndOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationUserByUserIdAndOrganizationIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).GetGroupUserByUserIdAndGroupId(ctx, in)
+		return srv.(UserServiceServer).GetOrganizationUserByUserIdAndOrganizationId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/GetGroupUserByUserIdAndGroupId",
+		FullMethod: "/user.UserService/GetOrganizationUserByUserIdAndOrganizationId",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetGroupUserByUserIdAndGroupId(ctx, req.(*GetGroupUserByUserIdAndGroupIdRequest))
+		return srv.(UserServiceServer).GetOrganizationUserByUserIdAndOrganizationId(ctx, req.(*GetOrganizationUserByUserIdAndOrganizationIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_CreateGroupUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateGroupUserRequest)
+func _UserService_CreateOrganizationUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrganizationUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CreateGroupUser(ctx, in)
+		return srv.(UserServiceServer).CreateOrganizationUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/CreateGroupUser",
+		FullMethod: "/user.UserService/CreateOrganizationUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CreateGroupUser(ctx, req.(*CreateGroupUserRequest))
+		return srv.(UserServiceServer).CreateOrganizationUser(ctx, req.(*CreateOrganizationUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_DeleteGroupUserByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteGroupUserByUserIdRequest)
+func _UserService_DeleteOrganizationUserByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationUserByUserIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).DeleteGroupUserByUserId(ctx, in)
+		return srv.(UserServiceServer).DeleteOrganizationUserByUserId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/DeleteGroupUserByUserId",
+		FullMethod: "/user.UserService/DeleteOrganizationUserByUserId",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).DeleteGroupUserByUserId(ctx, req.(*DeleteGroupUserByUserIdRequest))
+		return srv.(UserServiceServer).DeleteOrganizationUserByUserId(ctx, req.(*DeleteOrganizationUserByUserIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_DeleteGroupUserByGroupId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteGroupUserByGroupIdRequest)
+func _UserService_DeleteOrganizationUserByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationUserByOrganizationIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).DeleteGroupUserByGroupId(ctx, in)
+		return srv.(UserServiceServer).DeleteOrganizationUserByOrganizationId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/DeleteGroupUserByGroupId",
+		FullMethod: "/user.UserService/DeleteOrganizationUserByOrganizationId",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).DeleteGroupUserByGroupId(ctx, req.(*DeleteGroupUserByGroupIdRequest))
+		return srv.(UserServiceServer).DeleteOrganizationUserByOrganizationId(ctx, req.(*DeleteOrganizationUserByOrganizationIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetGroupById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGroupByIdRequest)
+func _UserService_GetOrganizationById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).GetGroupById(ctx, in)
+		return srv.(UserServiceServer).GetOrganizationById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/GetGroupById",
+		FullMethod: "/user.UserService/GetOrganizationById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetGroupById(ctx, req.(*GetGroupByIdRequest))
+		return srv.(UserServiceServer).GetOrganizationById(ctx, req.(*GetOrganizationByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_CreateGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateGroupRequest)
+func _UserService_CreateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrganizationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CreateGroup(ctx, in)
+		return srv.(UserServiceServer).CreateOrganization(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/CreateGroup",
+		FullMethod: "/user.UserService/CreateOrganization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CreateGroup(ctx, req.(*CreateGroupRequest))
+		return srv.(UserServiceServer).CreateOrganization(ctx, req.(*CreateOrganizationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_UpdateGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateGroupRequest)
+func _UserService_UpdateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOrganizationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).UpdateGroup(ctx, in)
+		return srv.(UserServiceServer).UpdateOrganization(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/UpdateGroup",
+		FullMethod: "/user.UserService/UpdateOrganization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UpdateGroup(ctx, req.(*UpdateGroupRequest))
+		return srv.(UserServiceServer).UpdateOrganization(ctx, req.(*UpdateOrganizationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_DeleteGroupById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteGroupByIdRequest)
+func _UserService_DeleteOrganizationById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrganizationByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).DeleteGroupById(ctx, in)
+		return srv.(UserServiceServer).DeleteOrganizationById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/DeleteGroupById",
+		FullMethod: "/user.UserService/DeleteOrganizationById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).DeleteGroupById(ctx, req.(*DeleteGroupByIdRequest))
+		return srv.(UserServiceServer).DeleteOrganizationById(ctx, req.(*DeleteOrganizationByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -429,36 +429,36 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_DeleteUserById_Handler,
 		},
 		{
-			MethodName: "GetGroupUserByUserIdAndGroupId",
-			Handler:    _UserService_GetGroupUserByUserIdAndGroupId_Handler,
+			MethodName: "GetOrganizationUserByUserIdAndOrganizationId",
+			Handler:    _UserService_GetOrganizationUserByUserIdAndOrganizationId_Handler,
 		},
 		{
-			MethodName: "CreateGroupUser",
-			Handler:    _UserService_CreateGroupUser_Handler,
+			MethodName: "CreateOrganizationUser",
+			Handler:    _UserService_CreateOrganizationUser_Handler,
 		},
 		{
-			MethodName: "DeleteGroupUserByUserId",
-			Handler:    _UserService_DeleteGroupUserByUserId_Handler,
+			MethodName: "DeleteOrganizationUserByUserId",
+			Handler:    _UserService_DeleteOrganizationUserByUserId_Handler,
 		},
 		{
-			MethodName: "DeleteGroupUserByGroupId",
-			Handler:    _UserService_DeleteGroupUserByGroupId_Handler,
+			MethodName: "DeleteOrganizationUserByOrganizationId",
+			Handler:    _UserService_DeleteOrganizationUserByOrganizationId_Handler,
 		},
 		{
-			MethodName: "GetGroupById",
-			Handler:    _UserService_GetGroupById_Handler,
+			MethodName: "GetOrganizationById",
+			Handler:    _UserService_GetOrganizationById_Handler,
 		},
 		{
-			MethodName: "CreateGroup",
-			Handler:    _UserService_CreateGroup_Handler,
+			MethodName: "CreateOrganization",
+			Handler:    _UserService_CreateOrganization_Handler,
 		},
 		{
-			MethodName: "UpdateGroup",
-			Handler:    _UserService_UpdateGroup_Handler,
+			MethodName: "UpdateOrganization",
+			Handler:    _UserService_UpdateOrganization_Handler,
 		},
 		{
-			MethodName: "DeleteGroupById",
-			Handler:    _UserService_DeleteGroupById_Handler,
+			MethodName: "DeleteOrganizationById",
+			Handler:    _UserService_DeleteOrganizationById_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

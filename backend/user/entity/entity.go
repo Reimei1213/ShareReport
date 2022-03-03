@@ -12,17 +12,18 @@ type User struct {
 	UpdatedAt time.Time `db:"updated_at"`
 }
 
-type GroupUser struct {
-	ID        int       `db:"id"`
-	UserID    string    `db:"user_id"`
-	GroupID   int       `db:"group_id"`
-	Valid     bool      `db:"valid"`
-	CreatedAt time.Time `db:"created_at"`
-	UpdatedAt time.Time `db:"updated_at"`
+type OrganizationUser struct {
+	ID             int       `db:"id"`
+	UserID         string    `db:"user_id"`
+	OrganizationID int       `db:"group_id"`
+	Valid          bool      `db:"valid"`
+	CreatedAt      time.Time `db:"created_at"`
+	UpdatedAt      time.Time `db:"updated_at"`
 }
 
-type Group struct {
+type Organization struct {
 	ID        int       `db:"id"`
+	UserID    string    `db:"user_id"`
 	Name      string    `db:"name"`
 	Valid     bool      `db:"valid"`
 	CreatedAt time.Time `db:"created_at"`

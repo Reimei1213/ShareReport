@@ -8,8 +8,8 @@ import (
 
 type DatabaseHandler interface {
 	UserHandler
-	GroupUserHandler
-	GroupHandler
+	OrganizationUserHandler
+	OrganizationHandler
 }
 
 type UserHandler interface {
@@ -19,21 +19,21 @@ type UserHandler interface {
 	DeleteUserById(id string) error
 }
 
-type GroupUserHandler interface {
+type OrganizationUserHandler interface {
 }
 
-type GroupHandler interface {
+type OrganizationHandler interface {
 }
 
 type databaseHandler struct {
 	UserHandler
-	GroupUserHandler
-	GroupHandler
+	OrganizationUserHandler
+	OrganizationHandler
 }
 
 func NewDatabaseHandler(db *sqlx.DB) DatabaseHandler {
 	uh := NewUserHandler(db)
-	guh := NewGroupUserHandler(db)
-	gh := NewGroupHandler(db)
-	return &databaseHandler{uh, guh, gh}
+	ouh := NewOrganizationUserHandler(db)
+	oh := NewOrganizationHandler(db)
+	return &databaseHandler{uh, ouh, oh}
 }
