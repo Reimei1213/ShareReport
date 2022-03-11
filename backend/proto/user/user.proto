@@ -21,9 +21,8 @@ service UserService {
 
   // Organization
   rpc GetOrganizationById (GetOrganizationByIdRequest) returns (GetOrganizationByIdResponse);
-  rpc CreateOrganization (CreateOrganizationRequest) returns (CreateOrganizationResponse);
-  rpc UpdateOrganization (UpdateOrganizationRequest) returns (UpdateOrganizationResponse);
-  rpc DeleteOrganizationById (DeleteOrganizationByIdRequest) returns (DeleteOrganizationByIdResponse);
+  rpc CreateOrUpdateOrganization (CreateOrUpdateOrganizationRequest) returns (google.protobuf.Empty);
+  rpc DeleteOrganizationById (DeleteOrganizationByIdRequest) returns (google.protobuf.Empty);
 }
 
 message User {
@@ -37,16 +36,16 @@ message User {
 }
 
 message OrganizationUser {
-  int32 id = 1;
+  int64 id = 1;
   string user_id = 2;
-  int32 group_id = 3;
+  int64 organization_id = 3;
   bool valid = 4;
   google.protobuf.Timestamp created_at = 5;
   google.protobuf.Timestamp updated_at = 6;
 }
 
 message Organization {
-  int32 id = 1;
+  int64 id = 1;
   string user_id = 2;
   string name = 3;
   bool valid = 4;
@@ -74,10 +73,10 @@ message DeleteUserByIdRequest {
   string id = 1;
 }
 
-// Organization
+// OrganizationUser
 message GetOrganizationUserByUserIdAndOrganizationIdRequest {
   string user_id = 1;
-  int32 organization_id = 2;
+  int64 organization_id = 2;
 }
 
 message GetOrganizationUserByUserIdAndOrganizationIdResponse {
@@ -86,7 +85,7 @@ message GetOrganizationUserByUserIdAndOrganizationIdResponse {
 
 message CreateOrganizationUserRequest {
   string user_id = 1;
-  int32 organization_id = 2;
+  int64 organization_id = 2;
 }
 
 message CreateOrganizationUserResponse {
@@ -102,7 +101,7 @@ message DeleteOrganizationUserByUserIdResponse {
 }
 
 message DeleteOrganizationUserByOrganizationIdRequest {
-  int32 organization_id = 1;
+  int64 organization_id = 1;
 }
 
 message DeleteOrganizationUserByOrganizationIdResponse {
@@ -111,33 +110,19 @@ message DeleteOrganizationUserByOrganizationIdResponse {
 
 // Organization
 message GetOrganizationByIdRequest {
-  int32 id = 1;
+  int64 id = 1;
 }
 
 message GetOrganizationByIdResponse {
   Organization organization = 1;
 }
 
-message CreateOrganizationRequest {
-  string name = 1;
-}
-
-message CreateOrganizationResponse {
-  Organization organization = 1;
-}
-
-message UpdateOrganizationRequest {
-  string name = 1;
-}
-
-message UpdateOrganizationResponse {
-  Organization organization = 1;
+message CreateOrUpdateOrganizationRequest {
+  int64 id = 1;
+  string user_id = 2;
+  string name = 3;
 }
 
 message DeleteOrganizationByIdRequest {
-  int32 id = 1;
-}
-
-message DeleteOrganizationByIdResponse {
-  Organization organization = 1;
+  int64 id = 1;
 }

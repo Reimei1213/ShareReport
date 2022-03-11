@@ -9,6 +9,7 @@ import (
 
 type OutputPortHandler interface {
 	User(*entity.User) *pb.User
+	Organization(*entity.Organization) *pb.Organization
 }
 
 type outputPortHandler struct {
@@ -28,6 +29,19 @@ func (oph *outputPortHandler) User(user *entity.User) *pb.User {
 		Email:     user.Email,
 		Password:  user.Password,
 		Valid:     user.Valid,
+		CreatedAt: createdAt,
+		UpdatedAt: updatedAt,
+	}
+}
+
+func (oph *outputPortHandler) Organization(organization *entity.Organization) *pb.Organization {
+	createdAt, _ := ptypes.TimestampProto(organization.CreatedAt)
+	updatedAt, _ := ptypes.TimestampProto(organization.UpdatedAt)
+
+	return &pb.Organization{
+		Id:        organization.ID,
+		UserId:    organization.UserID,
+		Name:      organization.Name,
 		CreatedAt: createdAt,
 		UpdatedAt: updatedAt,
 	}
