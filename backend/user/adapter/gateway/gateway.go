@@ -16,7 +16,7 @@ type UserHandler interface {
 	GetUserByID(id string) (*entity.User, error)
 	CreateUser(u *entity.User) error
 	UpdateUser(u *entity.User) error
-	DeleteUserById(id string) error
+	DeleteUserByID(id string) error
 }
 
 type OrganizationUserHandler interface {
@@ -26,6 +26,7 @@ type OrganizationHandler interface {
 	GetOrganizationByID(id int64) (*entity.Organization, error)
 	CreateOrganization(o *entity.Organization) error
 	UpdateOrganization(o *entity.Organization) error
+	DeleteOrganizationByID(id int64) error
 }
 
 type databaseHandler struct {

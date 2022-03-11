@@ -47,7 +47,7 @@ func (s *UserService) CreateOrUpdateUser(ctx context.Context, req *pb.CreateOrUp
 }
 
 func (s *UserService) DeleteUserById(ctx context.Context, req *pb.DeleteUserByIdRequest) (*emptypb.Empty, error) {
-	err := s.dh.DeleteUserById(req.Id)
+	err := s.dh.DeleteUserByID(req.Id)
 	if err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}
