@@ -26,6 +26,7 @@ type OrganizationHandler interface {
 	GetOrganizationByID(id int64) (*entity.Organization, error)
 	CreateOrganization(o *entity.Organization) error
 	UpdateOrganization(o *entity.Organization) error
+	DeleteOrganizationByID(id int64) error
 }
 
 type databaseHandler struct {
