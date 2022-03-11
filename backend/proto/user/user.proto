@@ -21,8 +21,7 @@ service UserService {
 
   // Organization
   rpc GetOrganizationById (GetOrganizationByIdRequest) returns (GetOrganizationByIdResponse);
-  rpc CreateOrganization (CreateOrganizationRequest) returns (CreateOrganizationResponse);
-  rpc UpdateOrganization (UpdateOrganizationRequest) returns (UpdateOrganizationResponse);
+  rpc CreateOrUpdateOrganization (CreateOrUpdateOrganizationRequest) returns (CreateOrUpdateOrganizationResponse);
   rpc DeleteOrganizationById (DeleteOrganizationByIdRequest) returns (DeleteOrganizationByIdResponse);
 }
 
@@ -39,7 +38,7 @@ message User {
 message OrganizationUser {
   int32 id = 1;
   string user_id = 2;
-  int32 group_id = 3;
+  int32 organization_id = 3;
   bool valid = 4;
   google.protobuf.Timestamp created_at = 5;
   google.protobuf.Timestamp updated_at = 6;
@@ -118,19 +117,11 @@ message GetOrganizationByIdResponse {
   Organization organization = 1;
 }
 
-message CreateOrganizationRequest {
+message CreateOrUpdateOrganizationRequest {
   string name = 1;
 }
 
-message CreateOrganizationResponse {
-  Organization organization = 1;
-}
-
-message UpdateOrganizationRequest {
-  string name = 1;
-}
-
-message UpdateOrganizationResponse {
+message CreateOrUpdateOrganizationResponse {
   Organization organization = 1;
 }
 

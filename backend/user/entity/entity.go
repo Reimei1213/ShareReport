@@ -15,7 +15,7 @@ type User struct {
 type OrganizationUser struct {
 	ID             int       `db:"id"`
 	UserID         string    `db:"user_id"`
-	OrganizationID int       `db:"group_id"`
+	OrganizationID int       `db:"organization_id"`
 	Valid          bool      `db:"valid"`
 	CreatedAt      time.Time `db:"created_at"`
 	UpdatedAt      time.Time `db:"updated_at"`
