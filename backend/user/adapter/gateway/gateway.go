@@ -23,6 +23,9 @@ type OrganizationUserHandler interface {
 }
 
 type OrganizationHandler interface {
+	GetOrganizationByID(id int64) (*entity.Organization, error)
+	CreateOrganization(o *entity.Organization) error
+	UpdateOrganization(o *entity.Organization) error
 }
 
 type databaseHandler struct {

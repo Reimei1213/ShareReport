@@ -13,16 +13,16 @@ type User struct {
 }
 
 type OrganizationUser struct {
-	ID             int       `db:"id"`
+	ID             int64     `db:"id"`
 	UserID         string    `db:"user_id"`
-	OrganizationID int       `db:"organization_id"`
+	OrganizationID int64     `db:"organization_id"`
 	Valid          bool      `db:"valid"`
 	CreatedAt      time.Time `db:"created_at"`
 	UpdatedAt      time.Time `db:"updated_at"`
 }
 
 type Organization struct {
-	ID        int       `db:"id"`
+	ID        int64     `db:"id"`
 	UserID    string    `db:"user_id"`
 	Name      string    `db:"name"`
 	Valid     bool      `db:"valid"`
