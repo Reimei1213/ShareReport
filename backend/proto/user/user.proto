@@ -15,9 +15,9 @@ service UserService {
 
   // OrganizationUser
   rpc GetOrganizationUserByUserIdAndOrganizationId (GetOrganizationUserByUserIdAndOrganizationIdRequest) returns (GetOrganizationUserByUserIdAndOrganizationIdResponse);
-  rpc CreateOrganizationUser (CreateOrganizationUserRequest) returns (CreateOrganizationUserResponse);
-  rpc DeleteOrganizationUserByUserId (DeleteOrganizationUserByUserIdRequest) returns (DeleteOrganizationUserByUserIdResponse);
-  rpc DeleteOrganizationUserByOrganizationId (DeleteOrganizationUserByOrganizationIdRequest) returns (DeleteOrganizationUserByOrganizationIdResponse);
+  rpc CreateOrganizationUser (CreateOrganizationUserRequest) returns (google.protobuf.Empty);
+  rpc DeleteOrganizationUserByUserId (DeleteOrganizationUserByUserIdRequest) returns (google.protobuf.Empty);
+  rpc DeleteOrganizationUserByOrganizationId (DeleteOrganizationUserByOrganizationIdRequest) returns (google.protobuf.Empty);
 
   // Organization
   rpc GetOrganizationById (GetOrganizationByIdRequest) returns (GetOrganizationByIdResponse);
@@ -88,24 +88,12 @@ message CreateOrganizationUserRequest {
   int64 organization_id = 2;
 }
 
-message CreateOrganizationUserResponse {
-  OrganizationUser organization_user = 1;
-}
-
 message DeleteOrganizationUserByUserIdRequest {
   string user_id = 1;
 }
 
-message DeleteOrganizationUserByUserIdResponse {
-  OrganizationUser organization_user = 1;
-}
-
 message DeleteOrganizationUserByOrganizationIdRequest {
   int64 organization_id = 1;
-}
-
-message DeleteOrganizationUserByOrganizationIdResponse {
-  OrganizationUser organization_user = 1;
 }
 
 // Organization

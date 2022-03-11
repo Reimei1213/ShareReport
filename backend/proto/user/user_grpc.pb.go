@@ -25,9 +25,9 @@ type UserServiceClient interface {
 	DeleteUserById(ctx context.Context, in *DeleteUserByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// OrganizationUser
 	GetOrganizationUserByUserIdAndOrganizationId(ctx context.Context, in *GetOrganizationUserByUserIdAndOrganizationIdRequest, opts ...grpc.CallOption) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error)
-	CreateOrganizationUser(ctx context.Context, in *CreateOrganizationUserRequest, opts ...grpc.CallOption) (*CreateOrganizationUserResponse, error)
-	DeleteOrganizationUserByUserId(ctx context.Context, in *DeleteOrganizationUserByUserIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationUserByUserIdResponse, error)
-	DeleteOrganizationUserByOrganizationId(ctx context.Context, in *DeleteOrganizationUserByOrganizationIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationUserByOrganizationIdResponse, error)
+	CreateOrganizationUser(ctx context.Context, in *CreateOrganizationUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteOrganizationUserByUserId(ctx context.Context, in *DeleteOrganizationUserByUserIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteOrganizationUserByOrganizationId(ctx context.Context, in *DeleteOrganizationUserByOrganizationIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Organization
 	GetOrganizationById(ctx context.Context, in *GetOrganizationByIdRequest, opts ...grpc.CallOption) (*GetOrganizationByIdResponse, error)
 	CreateOrUpdateOrganization(ctx context.Context, in *CreateOrUpdateOrganizationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -78,8 +78,8 @@ func (c *userServiceClient) GetOrganizationUserByUserIdAndOrganizationId(ctx con
 	return out, nil
 }
 
-func (c *userServiceClient) CreateOrganizationUser(ctx context.Context, in *CreateOrganizationUserRequest, opts ...grpc.CallOption) (*CreateOrganizationUserResponse, error) {
-	out := new(CreateOrganizationUserResponse)
+func (c *userServiceClient) CreateOrganizationUser(ctx context.Context, in *CreateOrganizationUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/user.UserService/CreateOrganizationUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -87,8 +87,8 @@ func (c *userServiceClient) CreateOrganizationUser(ctx context.Context, in *Crea
 	return out, nil
 }
 
-func (c *userServiceClient) DeleteOrganizationUserByUserId(ctx context.Context, in *DeleteOrganizationUserByUserIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationUserByUserIdResponse, error) {
-	out := new(DeleteOrganizationUserByUserIdResponse)
+func (c *userServiceClient) DeleteOrganizationUserByUserId(ctx context.Context, in *DeleteOrganizationUserByUserIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/user.UserService/DeleteOrganizationUserByUserId", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -96,8 +96,8 @@ func (c *userServiceClient) DeleteOrganizationUserByUserId(ctx context.Context, 
 	return out, nil
 }
 
-func (c *userServiceClient) DeleteOrganizationUserByOrganizationId(ctx context.Context, in *DeleteOrganizationUserByOrganizationIdRequest, opts ...grpc.CallOption) (*DeleteOrganizationUserByOrganizationIdResponse, error) {
-	out := new(DeleteOrganizationUserByOrganizationIdResponse)
+func (c *userServiceClient) DeleteOrganizationUserByOrganizationId(ctx context.Context, in *DeleteOrganizationUserByOrganizationIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/user.UserService/DeleteOrganizationUserByOrganizationId", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -142,9 +142,9 @@ type UserServiceServer interface {
 	DeleteUserById(context.Context, *DeleteUserByIdRequest) (*emptypb.Empty, error)
 	// OrganizationUser
 	GetOrganizationUserByUserIdAndOrganizationId(context.Context, *GetOrganizationUserByUserIdAndOrganizationIdRequest) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error)
-	CreateOrganizationUser(context.Context, *CreateOrganizationUserRequest) (*CreateOrganizationUserResponse, error)
-	DeleteOrganizationUserByUserId(context.Context, *DeleteOrganizationUserByUserIdRequest) (*DeleteOrganizationUserByUserIdResponse, error)
-	DeleteOrganizationUserByOrganizationId(context.Context, *DeleteOrganizationUserByOrganizationIdRequest) (*DeleteOrganizationUserByOrganizationIdResponse, error)
+	CreateOrganizationUser(context.Context, *CreateOrganizationUserRequest) (*emptypb.Empty, error)
+	DeleteOrganizationUserByUserId(context.Context, *DeleteOrganizationUserByUserIdRequest) (*emptypb.Empty, error)
+	DeleteOrganizationUserByOrganizationId(context.Context, *DeleteOrganizationUserByOrganizationIdRequest) (*emptypb.Empty, error)
 	// Organization
 	GetOrganizationById(context.Context, *GetOrganizationByIdRequest) (*GetOrganizationByIdResponse, error)
 	CreateOrUpdateOrganization(context.Context, *CreateOrUpdateOrganizationRequest) (*emptypb.Empty, error)
@@ -167,13 +167,13 @@ func (UnimplementedUserServiceServer) DeleteUserById(context.Context, *DeleteUse
 func (UnimplementedUserServiceServer) GetOrganizationUserByUserIdAndOrganizationId(context.Context, *GetOrganizationUserByUserIdAndOrganizationIdRequest) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationUserByUserIdAndOrganizationId not implemented")
 }
-func (UnimplementedUserServiceServer) CreateOrganizationUser(context.Context, *CreateOrganizationUserRequest) (*CreateOrganizationUserResponse, error) {
+func (UnimplementedUserServiceServer) CreateOrganizationUser(context.Context, *CreateOrganizationUserRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationUser not implemented")
 }
-func (UnimplementedUserServiceServer) DeleteOrganizationUserByUserId(context.Context, *DeleteOrganizationUserByUserIdRequest) (*DeleteOrganizationUserByUserIdResponse, error) {
+func (UnimplementedUserServiceServer) DeleteOrganizationUserByUserId(context.Context, *DeleteOrganizationUserByUserIdRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationUserByUserId not implemented")
 }
-func (UnimplementedUserServiceServer) DeleteOrganizationUserByOrganizationId(context.Context, *DeleteOrganizationUserByOrganizationIdRequest) (*DeleteOrganizationUserByOrganizationIdResponse, error) {
+func (UnimplementedUserServiceServer) DeleteOrganizationUserByOrganizationId(context.Context, *DeleteOrganizationUserByOrganizationIdRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationUserByOrganizationId not implemented")
 }
 func (UnimplementedUserServiceServer) GetOrganizationById(context.Context, *GetOrganizationByIdRequest) (*GetOrganizationByIdResponse, error) {
