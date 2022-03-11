@@ -16,7 +16,7 @@ type UserHandler interface {
 	GetUserByID(id string) (*entity.User, error)
 	CreateUser(u *entity.User) error
 	UpdateUser(u *entity.User) error
-	DeleteUserById(id string) error
+	DeleteUserByID(id string) error
 }
 
 type OrganizationUserHandler interface {

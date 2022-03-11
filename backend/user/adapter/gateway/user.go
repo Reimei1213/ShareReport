@@ -81,7 +81,7 @@ func (uh *userHandler) UpdateUser(u *entity.User) error {
 	return nil
 }
 
-func (uh *userHandler) DeleteUserById(id string) error {
+func (uh *userHandler) DeleteUserByID(id string) error {
 	tx := uh.db.MustBegin()
 	tx.MustExec(`
 		UPDATE user SET valid = ?
