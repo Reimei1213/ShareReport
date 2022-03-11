@@ -19,7 +19,7 @@ func (s *UserService) CreateOrganizationUser(ctx context.Context, req *pb.Create
 		UserID:         req.UserId,
 		OrganizationID: req.OrganizationId,
 	}
-	_, err := s.dh.GetOrganizationByUserIDAndOrganizationID(organizationUser.UserID, organizationUser.OrganizationID)
+	_, err := s.dh.GetOrganizationUserByUserIDAndOrganizationID(organizationUser.UserID, organizationUser.OrganizationID)
 	if err == nil {
 		return &emptypb.Empty{}, status.Error(codes.InvalidArgument, entity.ErrOrganizationUserExist.Error())
 	}

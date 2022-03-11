@@ -15,7 +15,7 @@ func NewOrganizationUserHandler(db *sqlx.DB) OrganizationUserHandler {
 	return &organizationUserHandler{db}
 }
 
-func (ouh *organizationUserHandler) GetOrganizationByUserIDAndOrganizationID(user_id string, organization_id int64) (*entity.OrganizationUser, error) {
+func (ouh *organizationUserHandler) GetOrganizationUserByUserIDAndOrganizationID(user_id string, organization_id int64) (*entity.OrganizationUser, error) {
 	var organizationUser entity.OrganizationUser
 	err := ouh.db.Get(&organizationUser, `
 		SELECT * FROM organization_user WHERE user_id = ? AND organization_id = ? AND valid = 1
@@ -46,6 +46,19 @@ func (ouh *organizationUserHandler) CreateOrganizationUser(ou *entity.Organizati
 		return err
 	}
 	err = tx.Commit()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (ouh *organizationUserHandler) DeleteOrganizationUserByUserID(user_id string) error {
+	tx := ouh.db.MustBegin()
+	tx.MustExec(`
+		UPDATE organization_user SET valid = ?
+		WHERE user_id = ?
+	`, 0, user_id)
+	err := tx.Commit()
 	if err != nil {
 		return err
 	}
