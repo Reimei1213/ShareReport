@@ -31,11 +31,11 @@ func (s *UserService) CreateOrUpdateUser(ctx context.Context, req *pb.CreateOrUp
 		Password: req.Password,
 	}
 	_, err := s.dh.GetUserByID(user.ID)
-	if err != nil && err != entity.ErrorUserNotExist {
+	if err != nil && err != entity.ErrUserNotExist {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}
 
-	if err == entity.ErrorUserNotExist {
+	if err == entity.ErrUserNotExist {
 		err = s.dh.CreateUser(&user)
 	} else {
 		err = s.dh.UpdateUser(&user)

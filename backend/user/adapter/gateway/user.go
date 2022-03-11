@@ -20,11 +20,11 @@ func NewUserHandler(db *sqlx.DB) UserHandler {
 func (uh *userHandler) GetUserByID(id string) (*entity.User, error) {
 	var user entity.User
 	err := uh.db.Get(&user, `
-		SELECT * FROM user WHERE id = ?
+		SELECT * FROM user WHERE id = ? AND valid = 1
 	`, id)
 
 	if err != nil && err == sql.ErrNoRows {
-		return nil, entity.ErrorUserNotExist
+		return nil, entity.ErrUserNotExist
 	}
 
 	if err != nil {
