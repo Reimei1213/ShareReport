@@ -64,3 +64,16 @@ func (ouh *organizationUserHandler) DeleteOrganizationUserByUserID(user_id strin
 	}
 	return nil
 }
+
+func (ouh *organizationUserHandler) DeleteOrganizationUserByOrganizationID(organization_id int64) error {
+	tx := ouh.db.MustBegin()
+	tx.MustExec(`
+		UPDATE organization_user SET valid = ?
+		WHERE organization_id = ?
+	`, 0, organization_id)
+	err := tx.Commit()
+	if err != nil {
+		return err
+	}
+	return nil
+}
