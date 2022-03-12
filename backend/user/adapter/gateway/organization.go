@@ -24,11 +24,24 @@ func (oh *organizationHandler) GetOrganizationByID(id int64) (*entity.Organizati
 	if err != nil && err == sql.ErrNoRows {
 		return nil, entity.ErrOrganizationNotExist
 	}
-	
+
 	if err != nil {
 		return nil, err
 	}
 	return &organization, nil
+}
+
+func (oh *organizationHandler) GetOrganizationListByUserId(user_id string) ([]*entity.Organization, error) {
+	var organizations []*entity.Organization
+	err := oh.db.Select(&organizations, `
+		SELECT o.id, o.user_id, o.name, o.valid, o.created_at, o.updated_at FROM organization AS o
+		INNER JOIN organization_user AS ou ON o.id = ou.organization_id
+		WHERE ou.user_id = ? AND o.valid = 1 AND ou.valid = 1
+	`, user_id)
+	if err != nil {
+		return nil, err
+	}
+	return organizations, nil
 }
 
 func (oh *organizationHandler) CreateOrganization(o *entity.Organization) error {
