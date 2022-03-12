@@ -8,8 +8,9 @@ import (
 )
 
 type OutputPortHandler interface {
-	User(*entity.User) *pb.User
-	Organization(*entity.Organization) *pb.Organization
+	User(user *entity.User) *pb.User
+	Users(users []*entity.User) []*pb.User
+	Organization(organization *entity.Organization) *pb.Organization
 }
 
 type outputPortHandler struct {
@@ -32,6 +33,25 @@ func (oph *outputPortHandler) User(user *entity.User) *pb.User {
 		CreatedAt: createdAt,
 		UpdatedAt: updatedAt,
 	}
+}
+
+func (oph *outputPortHandler) Users(users []*entity.User) []*pb.User {
+	var pbUsers []*pb.User
+	for _, user := range(users) {
+		createdAt, _ := ptypes.TimestampProto(user.CreatedAt)
+		updatedAt, _ := ptypes.TimestampProto(user.UpdatedAt)
+		pbUser := &pb.User{
+			Id:        user.ID,
+			Name:      user.Name,
+			Email:     user.Email,
+			Password:  user.Password,
+			Valid:     user.Valid,
+			CreatedAt: createdAt,
+			UpdatedAt: updatedAt,
+		}
+		pbUsers = append(pbUsers, pbUser)
+	}
+	return pbUsers
 }
 
 func (oph *outputPortHandler) Organization(organization *entity.Organization) *pb.Organization {

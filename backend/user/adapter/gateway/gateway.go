@@ -14,6 +14,7 @@ type DatabaseHandler interface {
 
 type UserHandler interface {
 	GetUserByID(id string) (*entity.User, error)
+	GetUserListByOrganizationId(organization_id int64) ([]*entity.User, error)
 	CreateUser(u *entity.User) error
 	UpdateUser(u *entity.User) error
 	DeleteUserByID(id string) error
