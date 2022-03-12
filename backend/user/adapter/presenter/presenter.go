@@ -11,6 +11,7 @@ type OutputPortHandler interface {
 	User(user *entity.User) *pb.User
 	Users(users []*entity.User) []*pb.User
 	Organization(organization *entity.Organization) *pb.Organization
+	Organizations(organizations []*entity.Organization) []*pb.Organization
 }
 
 type outputPortHandler struct {
@@ -37,7 +38,7 @@ func (oph *outputPortHandler) User(user *entity.User) *pb.User {
 
 func (oph *outputPortHandler) Users(users []*entity.User) []*pb.User {
 	var pbUsers []*pb.User
-	for _, user := range(users) {
+	for _, user := range users {
 		createdAt, _ := ptypes.TimestampProto(user.CreatedAt)
 		updatedAt, _ := ptypes.TimestampProto(user.UpdatedAt)
 		pbUser := &pb.User{
@@ -62,7 +63,27 @@ func (oph *outputPortHandler) Organization(organization *entity.Organization) *p
 		Id:        organization.ID,
 		UserId:    organization.UserID,
 		Name:      organization.Name,
+		Valid:     organization.Valid,
 		CreatedAt: createdAt,
 		UpdatedAt: updatedAt,
 	}
+}
+
+func (oph *outputPortHandler) Organizations(organizations []*entity.Organization) []*pb.Organization {
+	var pbOrganizations []*pb.Organization
+	for _, organization := range organizations {
+		createdAt, _ := ptypes.TimestampProto(organization.CreatedAt)
+		updatedAt, _ := ptypes.TimestampProto(organization.UpdatedAt)
+
+		pbOrganization := &pb.Organization{
+			Id:        organization.ID,
+			UserId:    organization.UserID,
+			Name:      organization.Name,
+			Valid:     organization.Valid,
+			CreatedAt: createdAt,
+			UpdatedAt: updatedAt,
+		}
+		pbOrganizations = append(pbOrganizations, pbOrganization)
+	}
+	return pbOrganizations
 }

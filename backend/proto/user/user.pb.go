@@ -945,6 +945,100 @@ func (x *GetOrganizationByIdResponse) GetOrganization() *Organization {
 	return nil
 }
 
+type GetOrganizationListByUserIdRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+}
+
+func (x *GetOrganizationListByUserIdRequest) Reset() {
+	*x = GetOrganizationListByUserIdRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOrganizationListByUserIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrganizationListByUserIdRequest) ProtoMessage() {}
+
+func (x *GetOrganizationListByUserIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrganizationListByUserIdRequest.ProtoReflect.Descriptor instead.
+func (*GetOrganizationListByUserIdRequest) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetOrganizationListByUserIdRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetOrganizationListByUserIdResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Organizations []*Organization `protobuf:"bytes,1,rep,name=organizations,proto3" json:"organizations,omitempty"`
+}
+
+func (x *GetOrganizationListByUserIdResponse) Reset() {
+	*x = GetOrganizationListByUserIdResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOrganizationListByUserIdResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrganizationListByUserIdResponse) ProtoMessage() {}
+
+func (x *GetOrganizationListByUserIdResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrganizationListByUserIdResponse.ProtoReflect.Descriptor instead.
+func (*GetOrganizationListByUserIdResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *GetOrganizationListByUserIdResponse) GetOrganizations() []*Organization {
+	if x != nil {
+		return x.Organizations
+	}
+	return nil
+}
+
 type CreateOrUpdateOrganizationRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -958,7 +1052,7 @@ type CreateOrUpdateOrganizationRequest struct {
 func (x *CreateOrUpdateOrganizationRequest) Reset() {
 	*x = CreateOrUpdateOrganizationRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_user_proto_msgTypes[16]
+		mi := &file_user_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -971,7 +1065,7 @@ func (x *CreateOrUpdateOrganizationRequest) String() string {
 func (*CreateOrUpdateOrganizationRequest) ProtoMessage() {}
 
 func (x *CreateOrUpdateOrganizationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_user_proto_msgTypes[16]
+	mi := &file_user_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -984,7 +1078,7 @@ func (x *CreateOrUpdateOrganizationRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CreateOrUpdateOrganizationRequest.ProtoReflect.Descriptor instead.
 func (*CreateOrUpdateOrganizationRequest) Descriptor() ([]byte, []int) {
-	return file_user_proto_rawDescGZIP(), []int{16}
+	return file_user_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *CreateOrUpdateOrganizationRequest) GetId() int64 {
@@ -1019,7 +1113,7 @@ type DeleteOrganizationByIdRequest struct {
 func (x *DeleteOrganizationByIdRequest) Reset() {
 	*x = DeleteOrganizationByIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_user_proto_msgTypes[17]
+		mi := &file_user_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1032,7 +1126,7 @@ func (x *DeleteOrganizationByIdRequest) String() string {
 func (*DeleteOrganizationByIdRequest) ProtoMessage() {}
 
 func (x *DeleteOrganizationByIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_user_proto_msgTypes[17]
+	mi := &file_user_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1045,7 +1139,7 @@ func (x *DeleteOrganizationByIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteOrganizationByIdRequest.ProtoReflect.Descriptor instead.
 func (*DeleteOrganizationByIdRequest) Descriptor() ([]byte, []int) {
-	return file_user_proto_rawDescGZIP(), []int{17}
+	return file_user_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *DeleteOrganizationByIdRequest) GetId() int64 {
@@ -1171,7 +1265,17 @@ var file_user_proto_rawDesc = []byte{
 	0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x12, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a,
 	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0c, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x22, 0x60, 0x0a, 0x21, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x55,
+	0x69, 0x6f, 0x6e, 0x22, 0x3d, 0x0a, 0x22, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69,
+	0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72,
+	0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
+	0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
+	0x49, 0x64, 0x22, 0x5f, 0x0a, 0x23, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x49,
+	0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38, 0x0a, 0x0d, 0x6f, 0x72, 0x67,
+	0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x12, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0d, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x22, 0x60, 0x0a, 0x21, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x55,
 	0x70, 0x64, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f,
 	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72,
@@ -1180,7 +1284,7 @@ var file_user_proto_rawDesc = []byte{
 	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x2f, 0x0a, 0x1d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f,
 	0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x79, 0x49, 0x64, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x32, 0xca, 0x08, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x53,
+	0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x32, 0xbe, 0x09, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x53,
 	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x42, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65,
 	0x72, 0x42, 0x79, 0x49, 0x64, 0x12, 0x18, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74,
 	0x55, 0x73, 0x65, 0x72, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
@@ -1237,20 +1341,28 @@ var file_user_proto_rawDesc = []byte{
 	0x47, 0x65, 0x74, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42,
 	0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x75, 0x73, 0x65,
 	0x72, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a,
-	0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4f,
-	0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x27, 0x2e, 0x75, 0x73,
-	0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x12, 0x55, 0x0a, 0x16,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x42, 0x79, 0x49, 0x64, 0x12, 0x23, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f,
-	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d,
-	0x70, 0x74, 0x79, 0x42, 0x12, 0x5a, 0x10, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x75, 0x73, 0x65,
-	0x72, 0x2f, 0x3b, 0x75, 0x73, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x72, 0x0a,
+	0x1b, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x4c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x28, 0x2e, 0x75,
+	0x73, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x47, 0x65,
+	0x74, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73,
+	0x74, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x5d, 0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12,
+	0x27, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79,
+	0x12, 0x55, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69,
+	0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x79, 0x49, 0x64, 0x12, 0x23, 0x2e, 0x75, 0x73, 0x65,
+	0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x42, 0x12, 0x5a, 0x10, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2f, 0x75, 0x73, 0x65, 0x72, 0x2f, 0x3b, 0x75, 0x73, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1265,7 +1377,7 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_user_proto_goTypes = []interface{}{
 	(*User)(nil),                                                 // 0: user.User
 	(*OrganizationUser)(nil),                                     // 1: user.OrganizationUser
@@ -1283,49 +1395,54 @@ var file_user_proto_goTypes = []interface{}{
 	(*DeleteOrganizationUserByOrganizationIdRequest)(nil),        // 13: user.DeleteOrganizationUserByOrganizationIdRequest
 	(*GetOrganizationByIdRequest)(nil),                           // 14: user.GetOrganizationByIdRequest
 	(*GetOrganizationByIdResponse)(nil),                          // 15: user.GetOrganizationByIdResponse
-	(*CreateOrUpdateOrganizationRequest)(nil),                    // 16: user.CreateOrUpdateOrganizationRequest
-	(*DeleteOrganizationByIdRequest)(nil),                        // 17: user.DeleteOrganizationByIdRequest
-	(*timestamppb.Timestamp)(nil),                                // 18: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),                                        // 19: google.protobuf.Empty
+	(*GetOrganizationListByUserIdRequest)(nil),                   // 16: user.GetOrganizationListByUserIdRequest
+	(*GetOrganizationListByUserIdResponse)(nil),                  // 17: user.GetOrganizationListByUserIdResponse
+	(*CreateOrUpdateOrganizationRequest)(nil),                    // 18: user.CreateOrUpdateOrganizationRequest
+	(*DeleteOrganizationByIdRequest)(nil),                        // 19: user.DeleteOrganizationByIdRequest
+	(*timestamppb.Timestamp)(nil),                                // 20: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),                                        // 21: google.protobuf.Empty
 }
 var file_user_proto_depIdxs = []int32{
-	18, // 0: user.User.created_at:type_name -> google.protobuf.Timestamp
-	18, // 1: user.User.updated_at:type_name -> google.protobuf.Timestamp
-	18, // 2: user.OrganizationUser.created_at:type_name -> google.protobuf.Timestamp
-	18, // 3: user.OrganizationUser.updated_at:type_name -> google.protobuf.Timestamp
-	18, // 4: user.Organization.created_at:type_name -> google.protobuf.Timestamp
-	18, // 5: user.Organization.updated_at:type_name -> google.protobuf.Timestamp
+	20, // 0: user.User.created_at:type_name -> google.protobuf.Timestamp
+	20, // 1: user.User.updated_at:type_name -> google.protobuf.Timestamp
+	20, // 2: user.OrganizationUser.created_at:type_name -> google.protobuf.Timestamp
+	20, // 3: user.OrganizationUser.updated_at:type_name -> google.protobuf.Timestamp
+	20, // 4: user.Organization.created_at:type_name -> google.protobuf.Timestamp
+	20, // 5: user.Organization.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 6: user.GetUserByIdResponse.user:type_name -> user.User
 	0,  // 7: user.GetUserListByOrganizationIdResponse.users:type_name -> user.User
 	1,  // 8: user.GetOrganizationUserByUserIdAndOrganizationIdResponse.organization_user:type_name -> user.OrganizationUser
 	2,  // 9: user.GetOrganizationByIdResponse.organization:type_name -> user.Organization
-	3,  // 10: user.UserService.GetUserById:input_type -> user.GetUserByIdRequest
-	5,  // 11: user.UserService.GetUserListByOrganizationId:input_type -> user.GetUserListByOrganizationIdRequest
-	7,  // 12: user.UserService.CreateOrUpdateUser:input_type -> user.CreateOrUpdateUserRequest
-	8,  // 13: user.UserService.DeleteUserById:input_type -> user.DeleteUserByIdRequest
-	9,  // 14: user.UserService.GetOrganizationUserByUserIdAndOrganizationId:input_type -> user.GetOrganizationUserByUserIdAndOrganizationIdRequest
-	11, // 15: user.UserService.CreateOrganizationUser:input_type -> user.CreateOrganizationUserRequest
-	12, // 16: user.UserService.DeleteOrganizationUserByUserId:input_type -> user.DeleteOrganizationUserByUserIdRequest
-	13, // 17: user.UserService.DeleteOrganizationUserByOrganizationId:input_type -> user.DeleteOrganizationUserByOrganizationIdRequest
-	14, // 18: user.UserService.GetOrganizationById:input_type -> user.GetOrganizationByIdRequest
-	16, // 19: user.UserService.CreateOrUpdateOrganization:input_type -> user.CreateOrUpdateOrganizationRequest
-	17, // 20: user.UserService.DeleteOrganizationById:input_type -> user.DeleteOrganizationByIdRequest
-	4,  // 21: user.UserService.GetUserById:output_type -> user.GetUserByIdResponse
-	6,  // 22: user.UserService.GetUserListByOrganizationId:output_type -> user.GetUserListByOrganizationIdResponse
-	19, // 23: user.UserService.CreateOrUpdateUser:output_type -> google.protobuf.Empty
-	19, // 24: user.UserService.DeleteUserById:output_type -> google.protobuf.Empty
-	10, // 25: user.UserService.GetOrganizationUserByUserIdAndOrganizationId:output_type -> user.GetOrganizationUserByUserIdAndOrganizationIdResponse
-	19, // 26: user.UserService.CreateOrganizationUser:output_type -> google.protobuf.Empty
-	19, // 27: user.UserService.DeleteOrganizationUserByUserId:output_type -> google.protobuf.Empty
-	19, // 28: user.UserService.DeleteOrganizationUserByOrganizationId:output_type -> google.protobuf.Empty
-	15, // 29: user.UserService.GetOrganizationById:output_type -> user.GetOrganizationByIdResponse
-	19, // 30: user.UserService.CreateOrUpdateOrganization:output_type -> google.protobuf.Empty
-	19, // 31: user.UserService.DeleteOrganizationById:output_type -> google.protobuf.Empty
-	21, // [21:32] is the sub-list for method output_type
-	10, // [10:21] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	2,  // 10: user.GetOrganizationListByUserIdResponse.organizations:type_name -> user.Organization
+	3,  // 11: user.UserService.GetUserById:input_type -> user.GetUserByIdRequest
+	5,  // 12: user.UserService.GetUserListByOrganizationId:input_type -> user.GetUserListByOrganizationIdRequest
+	7,  // 13: user.UserService.CreateOrUpdateUser:input_type -> user.CreateOrUpdateUserRequest
+	8,  // 14: user.UserService.DeleteUserById:input_type -> user.DeleteUserByIdRequest
+	9,  // 15: user.UserService.GetOrganizationUserByUserIdAndOrganizationId:input_type -> user.GetOrganizationUserByUserIdAndOrganizationIdRequest
+	11, // 16: user.UserService.CreateOrganizationUser:input_type -> user.CreateOrganizationUserRequest
+	12, // 17: user.UserService.DeleteOrganizationUserByUserId:input_type -> user.DeleteOrganizationUserByUserIdRequest
+	13, // 18: user.UserService.DeleteOrganizationUserByOrganizationId:input_type -> user.DeleteOrganizationUserByOrganizationIdRequest
+	14, // 19: user.UserService.GetOrganizationById:input_type -> user.GetOrganizationByIdRequest
+	16, // 20: user.UserService.GetOrganizationListByUserId:input_type -> user.GetOrganizationListByUserIdRequest
+	18, // 21: user.UserService.CreateOrUpdateOrganization:input_type -> user.CreateOrUpdateOrganizationRequest
+	19, // 22: user.UserService.DeleteOrganizationById:input_type -> user.DeleteOrganizationByIdRequest
+	4,  // 23: user.UserService.GetUserById:output_type -> user.GetUserByIdResponse
+	6,  // 24: user.UserService.GetUserListByOrganizationId:output_type -> user.GetUserListByOrganizationIdResponse
+	21, // 25: user.UserService.CreateOrUpdateUser:output_type -> google.protobuf.Empty
+	21, // 26: user.UserService.DeleteUserById:output_type -> google.protobuf.Empty
+	10, // 27: user.UserService.GetOrganizationUserByUserIdAndOrganizationId:output_type -> user.GetOrganizationUserByUserIdAndOrganizationIdResponse
+	21, // 28: user.UserService.CreateOrganizationUser:output_type -> google.protobuf.Empty
+	21, // 29: user.UserService.DeleteOrganizationUserByUserId:output_type -> google.protobuf.Empty
+	21, // 30: user.UserService.DeleteOrganizationUserByOrganizationId:output_type -> google.protobuf.Empty
+	15, // 31: user.UserService.GetOrganizationById:output_type -> user.GetOrganizationByIdResponse
+	17, // 32: user.UserService.GetOrganizationListByUserId:output_type -> user.GetOrganizationListByUserIdResponse
+	21, // 33: user.UserService.CreateOrUpdateOrganization:output_type -> google.protobuf.Empty
+	21, // 34: user.UserService.DeleteOrganizationById:output_type -> google.protobuf.Empty
+	23, // [23:35] is the sub-list for method output_type
+	11, // [11:23] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_user_proto_init() }
@@ -1527,7 +1644,7 @@ func file_user_proto_init() {
 			}
 		}
 		file_user_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateOrUpdateOrganizationRequest); i {
+			switch v := v.(*GetOrganizationListByUserIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1539,6 +1656,30 @@ func file_user_proto_init() {
 			}
 		}
 		file_user_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetOrganizationListByUserIdResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateOrUpdateOrganizationRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteOrganizationByIdRequest); i {
 			case 0:
 				return &v.state
@@ -1557,7 +1698,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_user_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   18,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

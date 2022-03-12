@@ -21,6 +21,17 @@ func (s *UserService) GetOrganizationById(ctx context.Context, req *pb.GetOrgani
 	}, nil
 }
 
+func (s *UserService) GetOrganizationListByUserId(ctx context.Context, req *pb.GetOrganizationListByUserIdRequest) (*pb.GetOrganizationListByUserIdResponse, error) {
+	organizations, err := s.dh.GetOrganizationListByUserId(req.UserId)
+	if err != nil {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
+
+	return &pb.GetOrganizationListByUserIdResponse{
+		Organizations: s.oph.Organizations(organizations),
+	}, nil
+}
+
 func (s *UserService) CreateOrUpdateOrganization(ctx context.Context, req *pb.CreateOrUpdateOrganizationRequest) (*emptypb.Empty, error) {
 	organization := entity.Organization{
 		ID:     req.Id,

@@ -31,6 +31,7 @@ type UserServiceClient interface {
 	DeleteOrganizationUserByOrganizationId(ctx context.Context, in *DeleteOrganizationUserByOrganizationIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Organization
 	GetOrganizationById(ctx context.Context, in *GetOrganizationByIdRequest, opts ...grpc.CallOption) (*GetOrganizationByIdResponse, error)
+	GetOrganizationListByUserId(ctx context.Context, in *GetOrganizationListByUserIdRequest, opts ...grpc.CallOption) (*GetOrganizationListByUserIdResponse, error)
 	CreateOrUpdateOrganization(ctx context.Context, in *CreateOrUpdateOrganizationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteOrganizationById(ctx context.Context, in *DeleteOrganizationByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -124,6 +125,15 @@ func (c *userServiceClient) GetOrganizationById(ctx context.Context, in *GetOrga
 	return out, nil
 }
 
+func (c *userServiceClient) GetOrganizationListByUserId(ctx context.Context, in *GetOrganizationListByUserIdRequest, opts ...grpc.CallOption) (*GetOrganizationListByUserIdResponse, error) {
+	out := new(GetOrganizationListByUserIdResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/GetOrganizationListByUserId", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userServiceClient) CreateOrUpdateOrganization(ctx context.Context, in *CreateOrUpdateOrganizationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/user.UserService/CreateOrUpdateOrganization", in, out, opts...)
@@ -158,6 +168,7 @@ type UserServiceServer interface {
 	DeleteOrganizationUserByOrganizationId(context.Context, *DeleteOrganizationUserByOrganizationIdRequest) (*emptypb.Empty, error)
 	// Organization
 	GetOrganizationById(context.Context, *GetOrganizationByIdRequest) (*GetOrganizationByIdResponse, error)
+	GetOrganizationListByUserId(context.Context, *GetOrganizationListByUserIdRequest) (*GetOrganizationListByUserIdResponse, error)
 	CreateOrUpdateOrganization(context.Context, *CreateOrUpdateOrganizationRequest) (*emptypb.Empty, error)
 	DeleteOrganizationById(context.Context, *DeleteOrganizationByIdRequest) (*emptypb.Empty, error)
 }
@@ -192,6 +203,9 @@ func (UnimplementedUserServiceServer) DeleteOrganizationUserByOrganizationId(con
 }
 func (UnimplementedUserServiceServer) GetOrganizationById(context.Context, *GetOrganizationByIdRequest) (*GetOrganizationByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationById not implemented")
+}
+func (UnimplementedUserServiceServer) GetOrganizationListByUserId(context.Context, *GetOrganizationListByUserIdRequest) (*GetOrganizationListByUserIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationListByUserId not implemented")
 }
 func (UnimplementedUserServiceServer) CreateOrUpdateOrganization(context.Context, *CreateOrUpdateOrganizationRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrUpdateOrganization not implemented")
@@ -373,6 +387,24 @@ func _UserService_GetOrganizationById_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetOrganizationListByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrganizationListByUserIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetOrganizationListByUserId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.UserService/GetOrganizationListByUserId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetOrganizationListByUserId(ctx, req.(*GetOrganizationListByUserIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserService_CreateOrUpdateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateOrUpdateOrganizationRequest)
 	if err := dec(in); err != nil {
@@ -451,6 +483,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrganizationById",
 			Handler:    _UserService_GetOrganizationById_Handler,
+		},
+		{
+			MethodName: "GetOrganizationListByUserId",
+			Handler:    _UserService_GetOrganizationListByUserId_Handler,
 		},
 		{
 			MethodName: "CreateOrUpdateOrganization",

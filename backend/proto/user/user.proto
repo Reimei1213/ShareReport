@@ -22,6 +22,7 @@ service UserService {
 
   // Organization
   rpc GetOrganizationById (GetOrganizationByIdRequest) returns (GetOrganizationByIdResponse);
+  rpc GetOrganizationListByUserId (GetOrganizationListByUserIdRequest) returns (GetOrganizationListByUserIdResponse);
   rpc CreateOrUpdateOrganization (CreateOrUpdateOrganizationRequest) returns (google.protobuf.Empty);
   rpc DeleteOrganizationById (DeleteOrganizationByIdRequest) returns (google.protobuf.Empty);
 }
@@ -112,6 +113,14 @@ message GetOrganizationByIdRequest {
 
 message GetOrganizationByIdResponse {
   Organization organization = 1;
+}
+
+message GetOrganizationListByUserIdRequest {
+  string user_id = 1;
+}
+
+message GetOrganizationListByUserIdResponse {
+  repeated Organization organizations = 1;
 }
 
 message CreateOrUpdateOrganizationRequest {
