@@ -23,6 +23,17 @@ func (s *UserService) GetUserById(ctx context.Context, req *pb.GetUserByIdReques
 	}, nil
 }
 
+func (s *UserService) GetUserListByOrganizationId(ctx context.Context, req *pb.GetUserListByOrganizationIdRequest) (*pb.GetUserListByOrganizationIdResponse, error) {
+	users, err := s.dh.GetUserListByOrganizationId(req.OrganizationId)
+	if err != nil {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
+
+	return &pb.GetUserListByOrganizationIdResponse{
+		Users: s.oph.Users(users),
+	}, nil
+}
+
 func (s *UserService) CreateOrUpdateUser(ctx context.Context, req *pb.CreateOrUpdateUserRequest) (*emptypb.Empty, error) {
 	user := entity.User{
 		ID:       req.Id,

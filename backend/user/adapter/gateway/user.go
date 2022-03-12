@@ -33,6 +33,19 @@ func (uh *userHandler) GetUserByID(id string) (*entity.User, error) {
 	return &user, nil
 }
 
+func (uh *userHandler) GetUserListByOrganizationId(organization_id int64) ([]*entity.User, error) {
+	var users []*entity.User
+	err := uh.db.Select(&users, `
+		SELECT u.id, u.name, u.email, u.password, u.valid, u.created_at, u.updated_at FROM user AS u
+		INNER JOIN organization_user AS ou ON u.id = ou.user_id 
+		WHERE ou.organization_id = ? AND u.valid = 1 AND ou.valid = 1
+	`, organization_id)
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
 func (uh *userHandler) CreateUser(u *entity.User) error {
 	uuid, err := uuid.NewRandom()
 	if err != nil {

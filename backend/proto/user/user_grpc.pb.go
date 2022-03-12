@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type UserServiceClient interface {
 	// User
 	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
+	GetUserListByOrganizationId(ctx context.Context, in *GetUserListByOrganizationIdRequest, opts ...grpc.CallOption) (*GetUserListByOrganizationIdResponse, error)
 	CreateOrUpdateUser(ctx context.Context, in *CreateOrUpdateUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUserById(ctx context.Context, in *DeleteUserByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// OrganizationUser
@@ -45,6 +46,15 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 func (c *userServiceClient) GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error) {
 	out := new(GetUserByIdResponse)
 	err := c.cc.Invoke(ctx, "/user.UserService/GetUserById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) GetUserListByOrganizationId(ctx context.Context, in *GetUserListByOrganizationIdRequest, opts ...grpc.CallOption) (*GetUserListByOrganizationIdResponse, error) {
+	out := new(GetUserListByOrganizationIdResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/GetUserListByOrganizationId", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -138,6 +148,7 @@ func (c *userServiceClient) DeleteOrganizationById(ctx context.Context, in *Dele
 type UserServiceServer interface {
 	// User
 	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
+	GetUserListByOrganizationId(context.Context, *GetUserListByOrganizationIdRequest) (*GetUserListByOrganizationIdResponse, error)
 	CreateOrUpdateUser(context.Context, *CreateOrUpdateUserRequest) (*emptypb.Empty, error)
 	DeleteUserById(context.Context, *DeleteUserByIdRequest) (*emptypb.Empty, error)
 	// OrganizationUser
@@ -157,6 +168,9 @@ type UnimplementedUserServiceServer struct {
 
 func (UnimplementedUserServiceServer) GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserById not implemented")
+}
+func (UnimplementedUserServiceServer) GetUserListByOrganizationId(context.Context, *GetUserListByOrganizationIdRequest) (*GetUserListByOrganizationIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserListByOrganizationId not implemented")
 }
 func (UnimplementedUserServiceServer) CreateOrUpdateUser(context.Context, *CreateOrUpdateUserRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrUpdateUser not implemented")
@@ -211,6 +225,24 @@ func _UserService_GetUserById_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).GetUserById(ctx, req.(*GetUserByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_GetUserListByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserListByOrganizationIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetUserListByOrganizationId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.UserService/GetUserListByOrganizationId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetUserListByOrganizationId(ctx, req.(*GetUserListByOrganizationIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -387,6 +419,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserById",
 			Handler:    _UserService_GetUserById_Handler,
+		},
+		{
+			MethodName: "GetUserListByOrganizationId",
+			Handler:    _UserService_GetUserListByOrganizationId_Handler,
 		},
 		{
 			MethodName: "CreateOrUpdateUser",
