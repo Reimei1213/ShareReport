@@ -1,0 +1,19 @@
+# type Query {}
+
+# type Mutation {}
+
+scalar DateTime
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  created_at: DateTime!
+}
+
+type Organization {
+  id: ID!
+  user_id: String!
+  name: String!
+  created_at: DateTime!
+}
