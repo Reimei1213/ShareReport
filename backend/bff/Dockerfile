@@ -12,5 +12,5 @@ RUN go mod download
 
 COPY . .
 
-# RUN go get -u github.com/cespare/reflex
+RUN go get -u github.com/cespare/reflex
 RUN go build -o main bff/main.go

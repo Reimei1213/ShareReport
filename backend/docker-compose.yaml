@@ -88,9 +88,15 @@ services:
     build:
       context: ./
       dockerfile: bff/Dockerfile
+    command: reflex -r '\.go$$' -s -- sh -c 'go run bff/main.go'
     image: share-report/bff
     container_name: bff
     ports:
       - "${BFF_PORT}:${BFF_PORT}"
     env_file:
       - .env
+    stdin_open: true
+    depends_on:
+      - user-api
+      - report-api
+      - book-api
