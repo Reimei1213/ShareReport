@@ -83,3 +83,14 @@ services:
     depends_on:
       book-db:
         condition: service_healthy
+
+  bff:
+    build:
+      context: ./
+      dockerfile: bff/Dockerfile
+    image: share-report/bff
+    container_name: bff
+    ports:
+      - "${BFF_PORT}:${BFF_PORT}"
+    env_file:
+      - .env
