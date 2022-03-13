@@ -51,29 +51,3 @@ func (ouh *organizationUserHandler) CreateOrganizationUser(ou *entity.Organizati
 	}
 	return nil
 }
-
-func (ouh *organizationUserHandler) DeleteOrganizationUserByUserID(user_id string) error {
-	tx := ouh.db.MustBegin()
-	tx.MustExec(`
-		UPDATE organization_user SET valid = ?
-		WHERE user_id = ?
-	`, 0, user_id)
-	err := tx.Commit()
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (ouh *organizationUserHandler) DeleteOrganizationUserByOrganizationID(organization_id int64) error {
-	tx := ouh.db.MustBegin()
-	tx.MustExec(`
-		UPDATE organization_user SET valid = ?
-		WHERE organization_id = ?
-	`, 0, organization_id)
-	err := tx.Commit()
-	if err != nil {
-		return err
-	}
-	return nil
-}

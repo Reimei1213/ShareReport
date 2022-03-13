@@ -97,9 +97,13 @@ func (uh *userHandler) UpdateUser(u *entity.User) error {
 func (uh *userHandler) DeleteUserByID(id string) error {
 	tx := uh.db.MustBegin()
 	tx.MustExec(`
-		UPDATE user SET valid = ?
+		UPDATE user SET valid = 0
 		WHERE id = ?
-	`, 0, id)
+	`, id)
+	tx.MustExec(`
+		UPDATE organization_user SET valid = 0
+		WHERE user_id = ?
+	`, id)
 	err := tx.Commit()
 	if err != nil {
 		return err

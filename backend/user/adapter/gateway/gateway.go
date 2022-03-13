@@ -23,8 +23,6 @@ type UserHandler interface {
 type OrganizationUserHandler interface {
 	GetOrganizationUserByUserIDAndOrganizationID(user_id string, organization_id int64) (*entity.OrganizationUser, error)
 	CreateOrganizationUser(ou *entity.OrganizationUser) error
-	DeleteOrganizationUserByUserID(user_id string) error
-	DeleteOrganizationUserByOrganizationID(organization_id int64) error
 }
 
 type OrganizationHandler interface {

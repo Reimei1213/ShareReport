@@ -15,10 +15,10 @@ service UserService {
   rpc DeleteUserById (DeleteUserByIdRequest) returns (google.protobuf.Empty);
 
   // OrganizationUser
-  rpc GetOrganizationUserByUserIdAndOrganizationId (GetOrganizationUserByUserIdAndOrganizationIdRequest) returns (GetOrganizationUserByUserIdAndOrganizationIdResponse);
+  // rpc GetOrganizationUserByUserIdAndOrganizationId (GetOrganizationUserByUserIdAndOrganizationIdRequest) returns (GetOrganizationUserByUserIdAndOrganizationIdResponse);
   rpc CreateOrganizationUser (CreateOrganizationUserRequest) returns (google.protobuf.Empty);
-  rpc DeleteOrganizationUserByUserId (DeleteOrganizationUserByUserIdRequest) returns (google.protobuf.Empty);
-  rpc DeleteOrganizationUserByOrganizationId (DeleteOrganizationUserByOrganizationIdRequest) returns (google.protobuf.Empty);
+  // rpc DeleteOrganizationUserByUserId (DeleteOrganizationUserByUserIdRequest) returns (google.protobuf.Empty);
+  // rpc DeleteOrganizationUserByOrganizationId (DeleteOrganizationUserByOrganizationIdRequest) returns (google.protobuf.Empty);
 
   // Organization
   rpc GetOrganizationById (GetOrganizationByIdRequest) returns (GetOrganizationByIdResponse);
@@ -84,27 +84,27 @@ message DeleteUserByIdRequest {
 }
 
 // OrganizationUser
-message GetOrganizationUserByUserIdAndOrganizationIdRequest {
-  string user_id = 1;
-  int64 organization_id = 2;
-}
+// message GetOrganizationUserByUserIdAndOrganizationIdRequest {
+//   string user_id = 1;
+//   int64 organization_id = 2;
+// }
 
-message GetOrganizationUserByUserIdAndOrganizationIdResponse {
-  OrganizationUser organization_user = 1;
-}
+// message GetOrganizationUserByUserIdAndOrganizationIdResponse {
+//   OrganizationUser organization_user = 1;
+// }
 
 message CreateOrganizationUserRequest {
   string user_id = 1;
   int64 organization_id = 2;
 }
 
-message DeleteOrganizationUserByUserIdRequest {
-  string user_id = 1;
-}
+// message DeleteOrganizationUserByUserIdRequest {
+//   string user_id = 1;
+// }
 
-message DeleteOrganizationUserByOrganizationIdRequest {
-  int64 organization_id = 1;
-}
+// message DeleteOrganizationUserByOrganizationIdRequest {
+//   int64 organization_id = 1;
+// }
 
 // Organization
 message GetOrganizationByIdRequest {
