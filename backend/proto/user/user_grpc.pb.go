@@ -25,10 +25,8 @@ type UserServiceClient interface {
 	CreateOrUpdateUser(ctx context.Context, in *CreateOrUpdateUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUserById(ctx context.Context, in *DeleteUserByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// OrganizationUser
-	GetOrganizationUserByUserIdAndOrganizationId(ctx context.Context, in *GetOrganizationUserByUserIdAndOrganizationIdRequest, opts ...grpc.CallOption) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error)
+	// rpc GetOrganizationUserByUserIdAndOrganizationId (GetOrganizationUserByUserIdAndOrganizationIdRequest) returns (GetOrganizationUserByUserIdAndOrganizationIdResponse);
 	CreateOrganizationUser(ctx context.Context, in *CreateOrganizationUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	DeleteOrganizationUserByUserId(ctx context.Context, in *DeleteOrganizationUserByUserIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	DeleteOrganizationUserByOrganizationId(ctx context.Context, in *DeleteOrganizationUserByOrganizationIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Organization
 	GetOrganizationById(ctx context.Context, in *GetOrganizationByIdRequest, opts ...grpc.CallOption) (*GetOrganizationByIdResponse, error)
 	GetOrganizationListByUserId(ctx context.Context, in *GetOrganizationListByUserIdRequest, opts ...grpc.CallOption) (*GetOrganizationListByUserIdResponse, error)
@@ -80,36 +78,9 @@ func (c *userServiceClient) DeleteUserById(ctx context.Context, in *DeleteUserBy
 	return out, nil
 }
 
-func (c *userServiceClient) GetOrganizationUserByUserIdAndOrganizationId(ctx context.Context, in *GetOrganizationUserByUserIdAndOrganizationIdRequest, opts ...grpc.CallOption) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error) {
-	out := new(GetOrganizationUserByUserIdAndOrganizationIdResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/GetOrganizationUserByUserIdAndOrganizationId", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *userServiceClient) CreateOrganizationUser(ctx context.Context, in *CreateOrganizationUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/user.UserService/CreateOrganizationUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) DeleteOrganizationUserByUserId(ctx context.Context, in *DeleteOrganizationUserByUserIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/user.UserService/DeleteOrganizationUserByUserId", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) DeleteOrganizationUserByOrganizationId(ctx context.Context, in *DeleteOrganizationUserByOrganizationIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/user.UserService/DeleteOrganizationUserByOrganizationId", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -162,10 +133,8 @@ type UserServiceServer interface {
 	CreateOrUpdateUser(context.Context, *CreateOrUpdateUserRequest) (*emptypb.Empty, error)
 	DeleteUserById(context.Context, *DeleteUserByIdRequest) (*emptypb.Empty, error)
 	// OrganizationUser
-	GetOrganizationUserByUserIdAndOrganizationId(context.Context, *GetOrganizationUserByUserIdAndOrganizationIdRequest) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error)
+	// rpc GetOrganizationUserByUserIdAndOrganizationId (GetOrganizationUserByUserIdAndOrganizationIdRequest) returns (GetOrganizationUserByUserIdAndOrganizationIdResponse);
 	CreateOrganizationUser(context.Context, *CreateOrganizationUserRequest) (*emptypb.Empty, error)
-	DeleteOrganizationUserByUserId(context.Context, *DeleteOrganizationUserByUserIdRequest) (*emptypb.Empty, error)
-	DeleteOrganizationUserByOrganizationId(context.Context, *DeleteOrganizationUserByOrganizationIdRequest) (*emptypb.Empty, error)
 	// Organization
 	GetOrganizationById(context.Context, *GetOrganizationByIdRequest) (*GetOrganizationByIdResponse, error)
 	GetOrganizationListByUserId(context.Context, *GetOrganizationListByUserIdRequest) (*GetOrganizationListByUserIdResponse, error)
@@ -189,17 +158,8 @@ func (UnimplementedUserServiceServer) CreateOrUpdateUser(context.Context, *Creat
 func (UnimplementedUserServiceServer) DeleteUserById(context.Context, *DeleteUserByIdRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserById not implemented")
 }
-func (UnimplementedUserServiceServer) GetOrganizationUserByUserIdAndOrganizationId(context.Context, *GetOrganizationUserByUserIdAndOrganizationIdRequest) (*GetOrganizationUserByUserIdAndOrganizationIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationUserByUserIdAndOrganizationId not implemented")
-}
 func (UnimplementedUserServiceServer) CreateOrganizationUser(context.Context, *CreateOrganizationUserRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganizationUser not implemented")
-}
-func (UnimplementedUserServiceServer) DeleteOrganizationUserByUserId(context.Context, *DeleteOrganizationUserByUserIdRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationUserByUserId not implemented")
-}
-func (UnimplementedUserServiceServer) DeleteOrganizationUserByOrganizationId(context.Context, *DeleteOrganizationUserByOrganizationIdRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganizationUserByOrganizationId not implemented")
 }
 func (UnimplementedUserServiceServer) GetOrganizationById(context.Context, *GetOrganizationByIdRequest) (*GetOrganizationByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationById not implemented")
@@ -297,24 +257,6 @@ func _UserService_DeleteUserById_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetOrganizationUserByUserIdAndOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOrganizationUserByUserIdAndOrganizationIdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).GetOrganizationUserByUserIdAndOrganizationId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.UserService/GetOrganizationUserByUserIdAndOrganizationId",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetOrganizationUserByUserIdAndOrganizationId(ctx, req.(*GetOrganizationUserByUserIdAndOrganizationIdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _UserService_CreateOrganizationUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateOrganizationUserRequest)
 	if err := dec(in); err != nil {
@@ -329,42 +271,6 @@ func _UserService_CreateOrganizationUser_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).CreateOrganizationUser(ctx, req.(*CreateOrganizationUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_DeleteOrganizationUserByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteOrganizationUserByUserIdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).DeleteOrganizationUserByUserId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.UserService/DeleteOrganizationUserByUserId",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).DeleteOrganizationUserByUserId(ctx, req.(*DeleteOrganizationUserByUserIdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_DeleteOrganizationUserByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteOrganizationUserByOrganizationIdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).DeleteOrganizationUserByOrganizationId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.UserService/DeleteOrganizationUserByOrganizationId",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).DeleteOrganizationUserByOrganizationId(ctx, req.(*DeleteOrganizationUserByOrganizationIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -465,20 +371,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_DeleteUserById_Handler,
 		},
 		{
-			MethodName: "GetOrganizationUserByUserIdAndOrganizationId",
-			Handler:    _UserService_GetOrganizationUserByUserIdAndOrganizationId_Handler,
-		},
-		{
 			MethodName: "CreateOrganizationUser",
 			Handler:    _UserService_CreateOrganizationUser_Handler,
-		},
-		{
-			MethodName: "DeleteOrganizationUserByUserId",
-			Handler:    _UserService_DeleteOrganizationUserByUserId_Handler,
-		},
-		{
-			MethodName: "DeleteOrganizationUserByOrganizationId",
-			Handler:    _UserService_DeleteOrganizationUserByOrganizationId_Handler,
 		},
 		{
 			MethodName: "GetOrganizationById",
