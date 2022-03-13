@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"context"
+	"log"
 	pb "share-report/proto/user"
 	"share-report/user/entity"
 
@@ -21,16 +22,20 @@ func (s *UserService) CreateOrganizationUser(ctx context.Context, req *pb.Create
 	}
 	_, err := s.dh.GetOrganizationUserByUserIDAndOrganizationID(organizationUser.UserID, organizationUser.OrganizationID)
 	if err == nil {
+		log.Fatal(err.Error())
 		return &emptypb.Empty{}, status.Error(codes.InvalidArgument, entity.ErrOrganizationUserExist.Error())
 	}
 	if err != nil && err != entity.ErrOrganizationUserNotExist {
+		log.Fatal(err.Error())
 		return &emptypb.Empty{}, status.Error(codes.InvalidArgument, err.Error())
 	}
 
 	err = s.dh.CreateOrganizationUser(&organizationUser)
 	if err != nil {
+		log.Fatal(err.Error())
 		return &emptypb.Empty{}, status.Error(codes.InvalidArgument, err.Error())
 	}
+	log.Print("create organization user")
 	return &emptypb.Empty{}, nil
 }
 
