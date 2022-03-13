@@ -81,9 +81,13 @@ func (oh *organizationHandler) UpdateOrganization(o *entity.Organization) error 
 func (oh *organizationHandler) DeleteOrganizationByID(id int64) error {
 	tx := oh.db.MustBegin()
 	tx.MustExec(`
-		UPDATE organization SET valid = ?
+		UPDATE organization SET valid = 0
 		WHERE id = ?
-	`, 0, id)
+	`, id)
+	tx.MustExec(`
+		UPDATE organization_user SET valid = 0
+		WHERE organization_id = ?
+	`, id)
 	err := tx.Commit()
 	if err != nil {
 		return err

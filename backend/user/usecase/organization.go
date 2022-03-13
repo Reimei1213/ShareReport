@@ -59,9 +59,5 @@ func (s *UserService) DeleteOrganizationById(ctx context.Context, req *pb.Delete
 	if err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}
-	err = s.dh.DeleteOrganizationUserByOrganizationID(req.Id)
-	if err != nil {
-		return nil, status.Error(codes.InvalidArgument, err.Error())
-	}
 	return &emptypb.Empty{}, nil
 }
