@@ -4,11 +4,13 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"share-report/bff/auth"
 	"share-report/bff/graph"
 	"share-report/bff/graph/generated"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/go-chi/chi"
 )
 
 const defaultPort = "8888"
@@ -18,6 +20,9 @@ func main() {
 	if port == "" {
 		port = defaultPort
 	}
+
+	router := chi.NewRouter()
+	router.Use(auth.Middleware())
 
 	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
 

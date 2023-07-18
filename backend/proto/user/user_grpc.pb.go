@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type UserServiceClient interface {
 	// User
 	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
+	GetUserIdByEmailAndPassword(ctx context.Context, in *GetUserIdByEmailAndPasswordRequest, opts ...grpc.CallOption) (*GetUserIdByEmailAndPasswordResponse, error)
 	GetUserListByOrganizationId(ctx context.Context, in *GetUserListByOrganizationIdRequest, opts ...grpc.CallOption) (*GetUserListByOrganizationIdResponse, error)
 	CreateOrUpdateUser(ctx context.Context, in *CreateOrUpdateUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUserById(ctx context.Context, in *DeleteUserByIdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -45,6 +46,15 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 func (c *userServiceClient) GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error) {
 	out := new(GetUserByIdResponse)
 	err := c.cc.Invoke(ctx, "/user.UserService/GetUserById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) GetUserIdByEmailAndPassword(ctx context.Context, in *GetUserIdByEmailAndPasswordRequest, opts ...grpc.CallOption) (*GetUserIdByEmailAndPasswordResponse, error) {
+	out := new(GetUserIdByEmailAndPasswordResponse)
+	err := c.cc.Invoke(ctx, "/user.UserService/GetUserIdByEmailAndPassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -129,6 +139,7 @@ func (c *userServiceClient) DeleteOrganizationById(ctx context.Context, in *Dele
 type UserServiceServer interface {
 	// User
 	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
+	GetUserIdByEmailAndPassword(context.Context, *GetUserIdByEmailAndPasswordRequest) (*GetUserIdByEmailAndPasswordResponse, error)
 	GetUserListByOrganizationId(context.Context, *GetUserListByOrganizationIdRequest) (*GetUserListByOrganizationIdResponse, error)
 	CreateOrUpdateUser(context.Context, *CreateOrUpdateUserRequest) (*emptypb.Empty, error)
 	DeleteUserById(context.Context, *DeleteUserByIdRequest) (*emptypb.Empty, error)
@@ -148,6 +159,9 @@ type UnimplementedUserServiceServer struct {
 
 func (UnimplementedUserServiceServer) GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserById not implemented")
+}
+func (UnimplementedUserServiceServer) GetUserIdByEmailAndPassword(context.Context, *GetUserIdByEmailAndPasswordRequest) (*GetUserIdByEmailAndPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserIdByEmailAndPassword not implemented")
 }
 func (UnimplementedUserServiceServer) GetUserListByOrganizationId(context.Context, *GetUserListByOrganizationIdRequest) (*GetUserListByOrganizationIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserListByOrganizationId not implemented")
@@ -199,6 +213,24 @@ func _UserService_GetUserById_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).GetUserById(ctx, req.(*GetUserByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_GetUserIdByEmailAndPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserIdByEmailAndPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetUserIdByEmailAndPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/user.UserService/GetUserIdByEmailAndPassword",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetUserIdByEmailAndPassword(ctx, req.(*GetUserIdByEmailAndPasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -359,6 +391,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_GetUserById_Handler,
 		},
 		{
+			MethodName: "GetUserIdByEmailAndPassword",
+			Handler:    _UserService_GetUserIdByEmailAndPassword_Handler,
+		},
+		{
 			MethodName: "GetUserListByOrganizationId",
 			Handler:    _UserService_GetUserListByOrganizationId_Handler,
 		},
@@ -392,5 +428,5 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "user.proto",
+	Metadata: "proto/user/user.proto",
 }

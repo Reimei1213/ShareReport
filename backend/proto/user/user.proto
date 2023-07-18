@@ -10,6 +10,7 @@ import "google/protobuf/empty.proto";
 service UserService {
   // User
   rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+  rpc GetUserIdByEmailAndPassword (GetUserIdByEmailAndPasswordRequest) returns (GetUserIdByEmailAndPasswordResponse);
   rpc GetUserListByOrganizationId (GetUserListByOrganizationIdRequest) returns (GetUserListByOrganizationIdResponse);
   rpc CreateOrUpdateUser (CreateOrUpdateUserRequest) returns (google.protobuf.Empty);
   rpc DeleteUserById (DeleteUserByIdRequest) returns (google.protobuf.Empty);
@@ -62,6 +63,15 @@ message GetUserByIdRequest {
 
 message GetUserByIdResponse {
   User user = 1;
+}
+
+message GetUserIdByEmailAndPasswordRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message GetUserIdByEmailAndPasswordResponse {
+  string id = 1;
 }
 
 message GetUserListByOrganizationIdRequest{

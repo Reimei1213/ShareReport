@@ -26,6 +26,10 @@ func (s *UserService) GetUserById(ctx context.Context, req *pb.GetUserByIdReques
 	}, nil
 }
 
+func (s *UserService) GetUserIdByEmailAndPassword(ctx context.Context, req *pb.GetUserIdByEmailAndPasswordRequest) (*pb.GetUserIdByEmailAndPasswordResponse, error) {
+	return nil, nil
+}
+
 func (s *UserService) GetUserListByOrganizationId(ctx context.Context, req *pb.GetUserListByOrganizationIdRequest) (*pb.GetUserListByOrganizationIdResponse, error) {
 	users, err := s.dh.GetUserListByOrganizationId(req.OrganizationId)
 	if err != nil {
